@@ -83,6 +83,16 @@ namespace MC_Debug_Monitor.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
+        internal static System.Drawing.Bitmap icon_net04 {
+            get {
+                object obj = ResourceManager.GetObject("icon-net04", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
         internal static System.Drawing.Bitmap link_variant {
             get {
                 object obj = ResourceManager.GetObject("link-variant", resourceCulture);

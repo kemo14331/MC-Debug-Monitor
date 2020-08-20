@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CoreRCON;
 
 namespace MC_Debug_Monitor
 {
     public partial class MainForm : Form
     {
+        public RCON rcon;
         public MainForm()
         {
             InitializeComponent();
