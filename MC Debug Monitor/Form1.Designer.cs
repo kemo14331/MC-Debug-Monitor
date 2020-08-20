@@ -57,6 +57,7 @@
             this.menuStrip.Size = new System.Drawing.Size(558, 24);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "menuStrip";
+            this.menuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip_ItemClicked);
             // 
             // addTabMenu
             // 
@@ -102,7 +103,7 @@
             this.serverStatusLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.serverStatusLabel.Margin = new System.Windows.Forms.Padding(3, 3, 0, 2);
             this.serverStatusLabel.Name = "serverStatusLabel";
-            this.serverStatusLabel.Size = new System.Drawing.Size(60, 19);
+            this.serverStatusLabel.Size = new System.Drawing.Size(80, 19);
             this.serverStatusLabel.Text = "server";
             this.serverStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -170,6 +171,7 @@
             this.Name = "MainForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "MC Debug Monitor";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.statusStrip.ResumeLayout(false);

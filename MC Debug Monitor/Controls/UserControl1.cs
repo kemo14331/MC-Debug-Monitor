@@ -1,13 +1,8 @@
-﻿using System;
+﻿using MC_Debug_Monitor.Properties;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Net;
 using System.Windows.Forms;
-using MC_Debug_Monitor.Properties;
-using System.Resources;
 
 namespace MC_Debug_Monitor.Controls
 {
@@ -47,6 +42,7 @@ namespace MC_Debug_Monitor.Controls
             rconIP.Text = Settings1.Default.rconIP;
             rconPort.Value = Settings1.Default.rconPort;
             rconPass.Text = Settings1.Default.rconPass;
+            onDisConnectServer();
         }
 
         private void saveAllSettings()
@@ -122,6 +118,56 @@ namespace MC_Debug_Monitor.Controls
                 }
             }
             saveAllSettings();
+        }
+
+        private void serverControl_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void connectButton_Click(object sender, EventArgs e)
+        {
+            Invoke((Action)(async () =>
+            {
+                connectButton.Enabled = false;
+                rconSetting.Enabled = false;
+                await Program.mainform.tryConnectServer();
+                if (Program.mainform.isConnectedServer)
+                {
+                    Program.mainform.rcon.OnDisconnected += (Action)Invoke((Action)onConnectServer);
+                    onConnectServer();
+                }
+                else
+                {
+                    onDisConnectServer();
+                }
+            }));
+        }
+
+        private void onConnectServer()
+        {
+            disconnectButton.Enabled = true;
+            reloadButton.Enabled = true;
+            connectButton.Enabled = false;
+        }
+
+        private void onDisConnectServer()
+        {
+            disconnectButton.Enabled = false;
+            reloadButton.Enabled = false;
+            connectButton.Enabled = true;
+            rconSetting.Enabled = true;
+        }
+
+        private void disconnectButton_Click(object sender, EventArgs e)
+        {
+            Program.mainform.onDisconnectServer();
+            onDisConnectServer();
+        }
+
+        private void reloadButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

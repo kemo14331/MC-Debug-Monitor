@@ -22,7 +22,7 @@ namespace MC_Debug_Monitor.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace MC_Debug_Monitor.Properties {
         ///   このクラスで使用されているキャッシュされた ResourceManager インスタンスを返します。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MC_Debug_Monitor.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace MC_Debug_Monitor.Properties {
         ///   現在のスレッドの CurrentUICulture プロパティをオーバーライドします。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace MC_Debug_Monitor.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap autorenew {
+        public static System.Drawing.Bitmap autorenew {
             get {
                 object obj = ResourceManager.GetObject("autorenew", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -73,7 +73,7 @@ namespace MC_Debug_Monitor.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap earth {
+        public static System.Drawing.Bitmap earth {
             get {
                 object obj = ResourceManager.GetObject("earth", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -83,7 +83,7 @@ namespace MC_Debug_Monitor.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap filter {
+        public static System.Drawing.Bitmap filter {
             get {
                 object obj = ResourceManager.GetObject("filter", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -93,7 +93,7 @@ namespace MC_Debug_Monitor.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap icon_net04 {
+        public static System.Drawing.Bitmap icon_net04 {
             get {
                 object obj = ResourceManager.GetObject("icon-net04", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -103,7 +103,7 @@ namespace MC_Debug_Monitor.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap link_variant {
+        public static System.Drawing.Bitmap link_variant {
             get {
                 object obj = ResourceManager.GetObject("link-variant", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -113,7 +113,7 @@ namespace MC_Debug_Monitor.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap link_variant_off {
+        public static System.Drawing.Bitmap link_variant_off {
             get {
                 object obj = ResourceManager.GetObject("link-variant-off", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -123,7 +123,7 @@ namespace MC_Debug_Monitor.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap offline {
+        public static System.Drawing.Bitmap offline {
             get {
                 object obj = ResourceManager.GetObject("offline", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -133,7 +133,7 @@ namespace MC_Debug_Monitor.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap online {
+        public static System.Drawing.Bitmap online {
             get {
                 object obj = ResourceManager.GetObject("online", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -143,7 +143,7 @@ namespace MC_Debug_Monitor.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap reload {
+        public static System.Drawing.Bitmap reload {
             get {
                 object obj = ResourceManager.GetObject("reload", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -153,7 +153,7 @@ namespace MC_Debug_Monitor.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap reloading {
+        public static System.Drawing.Bitmap reloading {
             get {
                 object obj = ResourceManager.GetObject("reloading", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
