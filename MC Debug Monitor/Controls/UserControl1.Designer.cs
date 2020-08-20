@@ -37,6 +37,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.rconIP = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.serverControl = new System.Windows.Forms.GroupBox();
             this.rconSetting.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rconPort)).BeginInit();
             this.SuspendLayout();
@@ -64,7 +65,7 @@
             this.getIPButton.Name = "getIPButton";
             this.getIPButton.Size = new System.Drawing.Size(25, 25);
             this.getIPButton.TabIndex = 1;
-            this.getIPButton.Text = "🌐";
+            this.getIPButton.Image = MC_Debug_Monitor.Properties.Resources.earth;
             this.getIPButton.UseVisualStyleBackColor = true;
             this.getIPButton.Click += new System.EventHandler(this.getIPButton_Click);
             // 
@@ -134,11 +135,21 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "IPアドレス";
             // 
+            // serverControl
+            // 
+            this.serverControl.Location = new System.Drawing.Point(225, 1);
+            this.serverControl.Name = "serverControl";
+            this.serverControl.Size = new System.Drawing.Size(219, 84);
+            this.serverControl.TabIndex = 1;
+            this.serverControl.TabStop = false;
+            this.serverControl.Text = "サーバー操作";
+            // 
             // serverManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.Controls.Add(this.serverControl);
             this.Controls.Add(this.rconSetting);
             this.Name = "serverManager";
             this.Size = new System.Drawing.Size(550, 330);
@@ -161,5 +172,6 @@
         private System.Windows.Forms.TextBox rconIP;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button getIPButton;
+        private System.Windows.Forms.GroupBox serverControl;
     }
 }
