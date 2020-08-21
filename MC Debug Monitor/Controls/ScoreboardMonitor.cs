@@ -61,8 +61,12 @@ namespace MC_Debug_Monitor.Controls
             }
             catch
             {
-                mainform.setStatusText("スコアボードの更新中にエラーが発生しました");
-                useAutoUpdate.Checked = false;
+                Invoke((Action)(() =>
+                {
+                    mainform.setStatusText("スコアボードの更新中にエラーが発生しました");
+                    useAutoUpdate.Checked = false;
+                }));
+                throw;
             }
         }
 
@@ -70,7 +74,7 @@ namespace MC_Debug_Monitor.Controls
         {
             scoreboards.Columns.Add("Objective");
             scoreboards.Columns.Add("Player");
-            scoreboards.Columns.Add("Value", Type.GetType("System.Int16"));
+            scoreboards.Columns.Add("Value");
             scoreboards.AcceptChanges();
             scoreboardView.DataSource = scoreboards;
             //scoreboardViewRebind();
