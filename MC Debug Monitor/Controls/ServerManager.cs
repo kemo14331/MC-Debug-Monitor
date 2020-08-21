@@ -21,7 +21,7 @@ namespace MC_Debug_Monitor.Controls
             }
             catch
             {
-                rconIP.Text = Settings1.Default.rconIP;
+                rconIP.Text = Settings.Default.rconIP;
                 System.Media.SystemSounds.Beep.Play();
             }
             saveAllSettings();
@@ -39,18 +39,18 @@ namespace MC_Debug_Monitor.Controls
 
         private void scoreboardMonitor_Load(object sender, EventArgs e)
         {
-            rconIP.Text = Settings1.Default.rconIP;
-            rconPort.Value = Settings1.Default.rconPort;
-            rconPass.Text = Settings1.Default.rconPass;
+            rconIP.Text = Settings.Default.rconIP;
+            rconPort.Value = Settings.Default.rconPort;
+            rconPass.Text = Settings.Default.rconPass;
             onDisConnectServer();
         }
 
         private void saveAllSettings()
         {
-            Settings1.Default.rconIP = rconIP.Text;
-            Settings1.Default.rconPass = rconPass.Text;
-            Settings1.Default.rconPort = rconPort.Value;
-            Settings1.Default.Save();
+            Settings.Default.rconIP = rconIP.Text;
+            Settings.Default.rconPass = rconPass.Text;
+            Settings.Default.rconPort = rconPort.Value;
+            Settings.Default.Save();
         }
 
         private void getIPButton_Click(object sender, EventArgs e)

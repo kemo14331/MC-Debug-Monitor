@@ -10,6 +10,9 @@ namespace MC_Debug_Monitor
     {
         public RCON rcon;
         public bool isConnectedServer = false;
+        //event
+        public Action onRconConnect = new Action(() => { });
+        public Action onRconDisconnect = new Action(() => { });
 
         public MainForm()
         {
@@ -52,8 +55,8 @@ namespace MC_Debug_Monitor
                 statusLabel.Text = "サーバーに接続中...";
                 await Task.Run(async () =>
                 {
-                    var adr = IPAddress.Parse(Properties.Settings1.Default.rconIP);
-                    rcon = new RCON(adr, (ushort)Properties.Settings1.Default.rconPort, Properties.Settings1.Default.rconPass);
+                    var adr = IPAddress.Parse(Properties.Settings.Default.rconIP);
+                    rcon = new RCON(adr, (ushort)Properties.Settings.Default.rconPort, Properties.Settings.Default.rconPass);
                     await rcon.ConnectAsync();
                 });
                 rcon.OnDisconnected += (() =>
@@ -87,7 +90,7 @@ namespace MC_Debug_Monitor
                     return null;
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e);
                 return null;
@@ -96,16 +99,18 @@ namespace MC_Debug_Monitor
 
         public void onDisconnectServer()
         {
-            if (rcon != null ) { try { rcon.Dispose(); } catch { } }
+            if (rcon != null) { try { rcon.Dispose(); } catch { } }
             setServerStatus("offline");
             isConnectedServer = false;
             statusLabel.Text = "サーバーとの接続が切断されました";
+            onRconDisconnect();
         }
 
         public void onConnectServer()
         {
             setServerStatus("online");
             isConnectedServer = true;
+            onRconConnect();
         }
 
         private void MainForm_Load(object sender, EventArgs e)

@@ -55,6 +55,7 @@
             this.scoreboardGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.scoreboardGroup.BackColor = System.Drawing.Color.Transparent;
             this.scoreboardGroup.Controls.Add(this.controlGroup);
             this.scoreboardGroup.Controls.Add(this.autoUpdateGroup);
             this.scoreboardGroup.Controls.Add(this.filterGroupBox);
@@ -86,6 +87,7 @@
             this.updateButton.TabIndex = 0;
             this.updateButton.Text = "更新";
             this.updateButton.UseVisualStyleBackColor = true;
+            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
             // 
             // exportButton
             // 
@@ -130,6 +132,7 @@
             0,
             0,
             0});
+            this.autoUpdateIntervalBox.ValueChanged += new System.EventHandler(this.autoUpdateIntervalBox_ValueChanged);
             // 
             // useAutoUpdate
             // 
@@ -140,6 +143,7 @@
             this.useAutoUpdate.TabIndex = 1;
             this.useAutoUpdate.Text = "使用する";
             this.useAutoUpdate.UseVisualStyleBackColor = true;
+            this.useAutoUpdate.CheckedChanged += new System.EventHandler(this.useAutoUpdate_CheckedChanged);
             // 
             // label3
             // 
@@ -164,22 +168,31 @@
             this.filterGroupBox.TabIndex = 1;
             this.filterGroupBox.TabStop = false;
             this.filterGroupBox.Text = "フィルタ";
+            this.filterGroupBox.Enter += new System.EventHandler(this.filterGroupBox_Enter);
             // 
             // plyComboBox
             // 
+            this.plyComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.plyComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.plyComboBox.FormattingEnabled = true;
             this.plyComboBox.Location = new System.Drawing.Point(14, 82);
             this.plyComboBox.Name = "plyComboBox";
             this.plyComboBox.Size = new System.Drawing.Size(121, 23);
             this.plyComboBox.TabIndex = 3;
+            this.plyComboBox.DataSourceChanged += new System.EventHandler(this.plyComboBox_DataSourceChanged);
+            this.plyComboBox.TextChanged += new System.EventHandler(this.plyComboBox_TextChanged);
             // 
             // objComboBox
             // 
+            this.objComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.objComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.objComboBox.FormattingEnabled = true;
             this.objComboBox.Location = new System.Drawing.Point(14, 38);
             this.objComboBox.Name = "objComboBox";
             this.objComboBox.Size = new System.Drawing.Size(121, 23);
             this.objComboBox.TabIndex = 2;
+            this.objComboBox.DataSourceChanged += new System.EventHandler(this.objComboBox_DataSourceChanged);
+            this.objComboBox.TextChanged += new System.EventHandler(this.objComboBox_TextChanged);
             // 
             // label2
             // 
@@ -206,9 +219,16 @@
             this.scoreboardView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.scoreboardView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.scoreboardView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
+            this.scoreboardView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.scoreboardView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.scoreboardView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.scoreboardView.Location = new System.Drawing.Point(7, 23);
             this.scoreboardView.Name = "scoreboardView";
+            this.scoreboardView.ReadOnly = true;
+            this.scoreboardView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.scoreboardView.RowHeadersVisible = false;
             this.scoreboardView.Size = new System.Drawing.Size(390, 301);
             this.scoreboardView.TabIndex = 0;
             this.scoreboardView.Text = "dataGridView1";
@@ -217,9 +237,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.scoreboardGroup);
             this.Name = "ScoreboardMonitor";
             this.Size = new System.Drawing.Size(550, 330);
+            this.Load += new System.EventHandler(this.ScoreboardMonitor_Load);
             this.scoreboardGroup.ResumeLayout(false);
             this.controlGroup.ResumeLayout(false);
             this.autoUpdateGroup.ResumeLayout(false);

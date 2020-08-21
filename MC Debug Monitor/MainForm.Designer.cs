@@ -147,7 +147,7 @@
             this.serverMonitor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.serverMonitor.Location = new System.Drawing.Point(0, 0);
             this.serverMonitor.Name = "serverMonitor";
-            this.serverMonitor.Size = new System.Drawing.Size(550, 330);
+            this.serverMonitor.Size = new System.Drawing.Size(550, 327);
             this.serverMonitor.TabIndex = 0;
             // 
             // scoreboardMonitorPage
@@ -166,9 +166,10 @@
             this.scoreboardMonitor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.scoreboardMonitor.BackColor = System.Drawing.Color.Transparent;
             this.scoreboardMonitor.Location = new System.Drawing.Point(0, 0);
             this.scoreboardMonitor.Name = "scoreboardMonitor";
-            this.scoreboardMonitor.Size = new System.Drawing.Size(550, 330);
+            this.scoreboardMonitor.Size = new System.Drawing.Size(550, 331);
             this.scoreboardMonitor.TabIndex = 0;
             // 
             // MainForm
