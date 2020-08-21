@@ -21,7 +21,12 @@ namespace MC_Debug_Monitor
 
         }
 
-        private void setServerStatus(string status)
+        public void setStatusText(string msg)
+        {
+            statusLabel.Text = msg;
+        }
+
+        public void setServerStatus(string status)
         {
             switch (status)
             {
@@ -68,9 +73,30 @@ namespace MC_Debug_Monitor
             }
         }
 
+        public async Task<string> sendCommand(string command)
+        {
+            try
+            {
+                if (isConnectedServer)
+                {
+                    string result = await rcon.SendCommandAsync(command);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+        }
+
         public void onDisconnectServer()
         {
-            if (rcon != null) { try { rcon.Dispose(); } catch { } }
+            if (rcon != null ) { try { rcon.Dispose(); } catch { } }
             setServerStatus("offline");
             isConnectedServer = false;
             statusLabel.Text = "サーバーとの接続が切断されました";

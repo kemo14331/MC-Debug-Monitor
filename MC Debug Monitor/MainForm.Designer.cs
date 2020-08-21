@@ -38,12 +38,14 @@
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.serverPage = new System.Windows.Forms.TabPage();
-            this.scoreboardMonitor1 = new MC_Debug_Monitor.Controls.serverManager();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.serverMonitor = new MC_Debug_Monitor.Controls.serverManager();
+            this.scoreboardMonitorPage = new System.Windows.Forms.TabPage();
+            this.scoreboardMonitor = new MC_Debug_Monitor.Controls.ScoreboardMonitor();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.mainTabControl.SuspendLayout();
             this.serverPage.SuspendLayout();
+            this.scoreboardMonitorPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -119,7 +121,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.mainTabControl.Controls.Add(this.serverPage);
-            this.mainTabControl.Controls.Add(this.tabPage2);
+            this.mainTabControl.Controls.Add(this.scoreboardMonitorPage);
             this.mainTabControl.Location = new System.Drawing.Point(0, 27);
             this.mainTabControl.Name = "mainTabControl";
             this.mainTabControl.SelectedIndex = 0;
@@ -128,7 +130,7 @@
             // 
             // serverPage
             // 
-            this.serverPage.Controls.Add(this.scoreboardMonitor1);
+            this.serverPage.Controls.Add(this.serverMonitor);
             this.serverPage.Location = new System.Drawing.Point(4, 24);
             this.serverPage.Name = "serverPage";
             this.serverPage.Padding = new System.Windows.Forms.Padding(3);
@@ -137,26 +139,37 @@
             this.serverPage.Text = "サーバー";
             this.serverPage.UseVisualStyleBackColor = true;
             // 
-            // scoreboardMonitor1
+            // serverMonitor
             // 
-            this.scoreboardMonitor1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.serverMonitor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.scoreboardMonitor1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.scoreboardMonitor1.Location = new System.Drawing.Point(0, 0);
-            this.scoreboardMonitor1.Name = "scoreboardMonitor1";
-            this.scoreboardMonitor1.Size = new System.Drawing.Size(550, 330);
-            this.scoreboardMonitor1.TabIndex = 0;
+            this.serverMonitor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.serverMonitor.Location = new System.Drawing.Point(0, 0);
+            this.serverMonitor.Name = "serverMonitor";
+            this.serverMonitor.Size = new System.Drawing.Size(550, 330);
+            this.serverMonitor.TabIndex = 0;
             // 
-            // tabPage2
+            // scoreboardMonitorPage
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 24);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(550, 330);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.scoreboardMonitorPage.Controls.Add(this.scoreboardMonitor);
+            this.scoreboardMonitorPage.Location = new System.Drawing.Point(4, 24);
+            this.scoreboardMonitorPage.Name = "scoreboardMonitorPage";
+            this.scoreboardMonitorPage.Padding = new System.Windows.Forms.Padding(3);
+            this.scoreboardMonitorPage.Size = new System.Drawing.Size(550, 330);
+            this.scoreboardMonitorPage.TabIndex = 1;
+            this.scoreboardMonitorPage.Text = "スコアボード";
+            this.scoreboardMonitorPage.UseVisualStyleBackColor = true;
+            // 
+            // scoreboardMonitor
+            // 
+            this.scoreboardMonitor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.scoreboardMonitor.Location = new System.Drawing.Point(0, 0);
+            this.scoreboardMonitor.Name = "scoreboardMonitor";
+            this.scoreboardMonitor.Size = new System.Drawing.Size(550, 330);
+            this.scoreboardMonitor.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -178,6 +191,7 @@
             this.statusStrip.PerformLayout();
             this.mainTabControl.ResumeLayout(false);
             this.serverPage.ResumeLayout(false);
+            this.scoreboardMonitorPage.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -192,11 +206,12 @@
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel serverStatusLabel;
         private System.Windows.Forms.TabControl mainTabControl;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage scoreboardMonitorPage;
         private System.Windows.Forms.ToolStripStatusLabel statusLabel;
         private System.Windows.Forms.ToolStripMenuItem closeTab;
         private System.Windows.Forms.TabPage serverPage;
-        private Controls.serverManager scoreboardMonitor1;
+        private Controls.serverManager serverMonitor;
+        private Controls.ScoreboardMonitor scoreboardMonitor;
     }
 }
 

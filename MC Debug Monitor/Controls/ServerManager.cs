@@ -167,7 +167,19 @@ namespace MC_Debug_Monitor.Controls
 
         private void reloadButton_Click(object sender, EventArgs e)
         {
-
+            Invoke((Action)(async () =>
+            {
+                reloadButton.Enabled = false;
+                Program.mainform.setServerStatus("reloading");
+                Program.mainform.setStatusText("サーバーをリロード中");
+                if (Program.mainform.isConnectedServer)
+                {
+                    await Program.mainform.sendCommand("reload");
+                }
+                Program.mainform.setStatusText("リロード完了");
+                reloadButton.Enabled = true;
+                Program.mainform.setServerStatus("online");
+            }));
         }
     }
 }
