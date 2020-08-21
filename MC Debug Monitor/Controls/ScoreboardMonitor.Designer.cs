@@ -181,6 +181,7 @@
             this.plyComboBox.TabIndex = 3;
             this.plyComboBox.DataSourceChanged += new System.EventHandler(this.plyComboBox_DataSourceChanged);
             this.plyComboBox.TextChanged += new System.EventHandler(this.plyComboBox_TextChanged);
+            this.plyComboBox.Leave += new System.EventHandler(this.plyComboBox_Leave);
             // 
             // objComboBox
             // 
@@ -193,6 +194,7 @@
             this.objComboBox.TabIndex = 2;
             this.objComboBox.DataSourceChanged += new System.EventHandler(this.objComboBox_DataSourceChanged);
             this.objComboBox.TextChanged += new System.EventHandler(this.objComboBox_TextChanged);
+            this.objComboBox.Leave += new System.EventHandler(this.objComboBox_Leave);
             // 
             // label2
             // 

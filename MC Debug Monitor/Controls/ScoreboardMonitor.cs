@@ -307,8 +307,8 @@ namespace MC_Debug_Monitor.Controls
 
         private void runFilter()
         {
-            scoreboards.DefaultView.RowFilter = string.Format("Objective LIKE '{0}' AND Player LIKE '{1}'",
-                objComboBox.SelectedText, plyComboBox.SelectedText);
+             scoreboards.DefaultView.RowFilter = string.Format("Objective LIKE '{0}' AND Player LIKE '{1}'",
+                objComboBox.Text, plyComboBox.Text);
             scoreboards.AcceptChanges();
         }
 
@@ -341,6 +341,22 @@ namespace MC_Debug_Monitor.Controls
         private void plyComboBox_DataSourceChanged(object sender, EventArgs e)
         {
             sortFilter(plyComboBox);
+        }
+
+        private void objComboBox_Leave(object sender, EventArgs e)
+        {
+            if (!objComboBox.Items.Contains(objComboBox.Text))
+            {
+                objComboBox.SelectedIndex = 0;
+            }
+        }
+
+        private void plyComboBox_Leave(object sender, EventArgs e)
+        {
+            if (!objComboBox.Items.Contains(objComboBox.Text))
+            {
+                objComboBox.SelectedIndex = 0;
+            }
         }
     }
 }
