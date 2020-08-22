@@ -3,6 +3,7 @@ using MC_Debug_Monitor.utils;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -311,8 +312,8 @@ namespace MC_Debug_Monitor.Controls
 
         private void runFilter()
         {
-             scoreboards.DefaultView.RowFilter = string.Format("Objective LIKE '{0}' AND Player LIKE '{1}'",
-                objComboBox.Text, plyComboBox.Text);
+            scoreboards.DefaultView.RowFilter = string.Format("Objective LIKE '{0}' AND Player LIKE '{1}'",
+               objComboBox.Text, plyComboBox.Text);
             scoreboards.AcceptChanges();
         }
 
@@ -360,6 +361,27 @@ namespace MC_Debug_Monitor.Controls
             if (!objComboBox.Items.Contains(objComboBox.Text))
             {
                 objComboBox.SelectedIndex = 0;
+            }
+        }
+
+        private void exportButton_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.FileName = "scoreboards.csv";
+            sfd.AddExtension = true;
+            sfd.Filter = "CSVファイル(*.csv)|*.csv|Jsonファイル(*.json)|*.json";
+            //ダイアログを表示する
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                switch (Path.GetExtension(sfd.FileName))
+                {
+                    case ".csv":
+                        FileUtil.saveDataTableToCSV(scoreboards, sfd.FileName);
+                        break;
+                    case ".json":
+                        FileUtil.saveDataTableToJson(scoreboards, sfd.FileName);
+                        break;
+                }
             }
         }
     }

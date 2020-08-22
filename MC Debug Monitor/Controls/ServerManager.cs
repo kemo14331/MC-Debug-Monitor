@@ -1,4 +1,5 @@
 ﻿using MC_Debug_Monitor.Properties;
+using MC_Debug_Monitor.utils;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -74,46 +75,26 @@ namespace MC_Debug_Monitor.Controls
                 stream = ofd.OpenFile();
                 if (stream != null)
                 {
-                    Dictionary<string, string> settings = new Dictionary<string, string>();
-                    System.IO.StreamReader sr = new System.IO.StreamReader(stream);
-
+                    Dictionary<string, string> properties  = FileUtil.getServerProperties(stream);
                     try
                     {
-                        while (sr.Peek() >= 0)
+                        
+                        if (properties["enable-rcon"].Equals("true"))
                         {
-                            string str = sr.ReadLine();
-                            if (!str[0].Equals("#") && str.IndexOf("=") != -1)
-                            {
-                                int keyIndex = str.IndexOf("=");
-                                string key = str.Substring(0, keyIndex);
-                                string value;
-                                if (keyIndex + 1 <= str.Length - 1)
-                                {
-                                    value = str.Substring(keyIndex + 1, str.Length - (keyIndex + 1));
-                                }
-                                else
-                                {
-                                    value = null;
-                                }
-                                settings.Add(key, value);
-                            }
-                        }
-                        if (settings["enable-rcon"].Equals("true"))
-                        {
-                            rconIP.Text = settings["server-ip"];
-                            rconPort.Value = int.Parse(settings["rcon.port"]);
-                            rconPass.Text = settings["rcon.password"];
+                            rconIP.Text = properties["server-ip"];
+                            rconPort.Value = int.Parse(properties["rcon.port"]);
+                            rconPass.Text = properties["rcon.password"];
                             System.Media.SystemSounds.Asterisk.Play();
                         }
                         else
                         {
-                            MessageBox.Show("Your Server don't enable Rcon!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Rconが有効ではありません。\nserver.propertiesの内容を確認してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     catch (Exception ex)
                     {
                         Console.WriteLine(ex.Message);
-                        MessageBox.Show("This file has a wrong value!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("設定の値が不正です。\nserver.propertiesの内容を確認してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }

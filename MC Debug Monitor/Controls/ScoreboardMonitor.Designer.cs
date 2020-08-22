@@ -97,6 +97,7 @@
             this.exportButton.TabIndex = 0;
             this.exportButton.Text = "エクスポート";
             this.exportButton.UseVisualStyleBackColor = true;
+            this.exportButton.Click += new System.EventHandler(this.exportButton_Click);
             // 
             // autoUpdateGroup
             // 
