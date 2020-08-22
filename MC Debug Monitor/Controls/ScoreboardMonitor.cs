@@ -358,9 +358,9 @@ namespace MC_Debug_Monitor.Controls
 
         private void plyComboBox_Leave(object sender, EventArgs e)
         {
-            if (!objComboBox.Items.Contains(objComboBox.Text))
+            if (!plyComboBox.Items.Contains(plyComboBox.Text))
             {
-                objComboBox.SelectedIndex = 0;
+                plyComboBox.SelectedIndex = 0;
             }
         }
 
