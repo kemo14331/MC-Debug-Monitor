@@ -180,7 +180,7 @@ namespace MC_Debug_Monitor.Controls
                 {
                     objectives = getObjectivesArray(await mainform.sendCommand("scoreboard objectives list"));
                     players = getEntitiesArray(await mainform.sendCommand("scoreboard players list"));
-                    //キャッシュにないobjectiveまたはplayersを含むrowを削除
+                    //objectivesにないobjectivesCashを削除
                     foreach (string objective in objectivesCash)
                     {
                         if (!objectives.Contains(objective))
@@ -223,7 +223,7 @@ namespace MC_Debug_Monitor.Controls
                             string result = await mainform.sendCommand("scoreboard players get " + player + " " + objective);
                             if (result.IndexOf("Can't") != -1)
                             {
-                                break;
+                                continue;
                             }
                             int value = int.Parse(result.Split(' ')[2]);
                             DataRow[] dr = scoreboards.Select("Objective='" + objective + "' and Player='" + player + "'");
