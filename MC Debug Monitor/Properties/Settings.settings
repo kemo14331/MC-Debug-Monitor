@@ -14,5 +14,8 @@
     <Setting Name="scoreboardUpdateInterval" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">500</Value>
     </Setting>
+    <Setting Name="version" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0.1.0_alpha</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

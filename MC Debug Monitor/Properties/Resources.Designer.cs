@@ -159,5 +159,18 @@ namespace MC_Debug_Monitor.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   テスト
+        ///2
+        ///3
+        ///4
+        ///5 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string VersionInfo {
+            get {
+                return ResourceManager.GetString("VersionInfo", resourceCulture);
+            }
+        }
     }
 }

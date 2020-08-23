@@ -42,6 +42,7 @@
             this.serverMonitor = new MC_Debug_Monitor.Controls.serverManager();
             this.scoreboardMonitorPage = new System.Windows.Forms.TabPage();
             this.scoreboardMonitor = new MC_Debug_Monitor.Controls.ScoreboardMonitor();
+            this.versionInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.mainTabControl.SuspendLayout();
@@ -95,6 +96,8 @@
             // 
             // helpMenu
             // 
+            this.helpMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.versionInfo});
             this.helpMenu.Name = "helpMenu";
             this.helpMenu.Size = new System.Drawing.Size(65, 20);
             this.helpMenu.Text = "ヘルプ(&H)";
@@ -184,6 +187,13 @@
             this.scoreboardMonitor.Size = new System.Drawing.Size(550, 330);
             this.scoreboardMonitor.TabIndex = 0;
             // 
+            // versionInfo
+            // 
+            this.versionInfo.Name = "versionInfo";
+            this.versionInfo.Size = new System.Drawing.Size(142, 22);
+            this.versionInfo.Text = "バージョン情報";
+            this.versionInfo.Click += new System.EventHandler(this.versionInfoClicked);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -226,6 +236,7 @@
         private Controls.serverManager serverMonitor;
         private Controls.ScoreboardMonitor scoreboardMonitor;
         private System.Windows.Forms.ToolStripMenuItem addTestTab;
+        private System.Windows.Forms.ToolStripMenuItem versionInfo;
     }
 }
 

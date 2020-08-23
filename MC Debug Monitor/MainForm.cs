@@ -148,5 +148,11 @@ namespace MC_Debug_Monitor
                 MessageBox.Show("このタブは削除できません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        public void versionInfoClicked(object sender, EventArgs e)
+        {
+            VersionInfoForm f = new VersionInfoForm();
+            f.Show();
+        }
     }
 }
