@@ -186,12 +186,18 @@ namespace MC_Debug_Monitor.Controls
                         if (!objectives.Contains(objective))
                         {
                             //ついでに削除
-                            objComboBox.Items.Remove(objective);
+                            Invoke((Action)(() =>
+                            {
+                                objComboBox.Items.Remove(objective);
+                            }));
                             DataRow[] drs = scoreboards.Select("Objective='" + objective + "'");
                             foreach (DataRow dr in drs)
                             {
                                 int index = scoreboards.Rows.IndexOf(dr);
-                                scoreboards.Rows[index].Delete();
+                                Invoke((Action)(() =>
+                                {
+                                    scoreboards.Rows[index].Delete();
+                                }));
                             }
                             scoreboards.AcceptChanges();
                         }
@@ -203,12 +209,18 @@ namespace MC_Debug_Monitor.Controls
                         if (!players.Contains(player))
                         {
                             //ついでに削除
-                            plyComboBox.Items.Remove(player);
+                            Invoke((Action)(() =>
+                            {
+                                objComboBox.Items.Remove(player);
+                            }));
                             DataRow[] drs = scoreboards.Select("Player='" + player + "'");
                             foreach (DataRow dr in drs)
                             {
                                 int index = scoreboards.Rows.IndexOf(dr);
-                                scoreboards.Rows[index].Delete();
+                                Invoke((Action)(() =>
+                                {
+                                    scoreboards.Rows[index].Delete();
+                                }));
                             }
                             scoreboards.AcceptChanges();
                         }
