@@ -1,4 +1,4 @@
-# MCDebugMonitor
+# MCDebugMonitor ![Licence](https://img.shields.io/github/license/kemo14331/MC-Debug-Monitor)
 
 MCDebugMonitor is that monitors the information obtained by commands in Minecraft.  
 The project is licensed under the MIT license.
