@@ -16,6 +16,11 @@ namespace MC_Debug_Monitor.Controls
 
         private void rconIPLeaved(object sender, EventArgs e)
         {
+            if (rconIP.Text.Equals("localhost"))
+            {
+                rconIP.Text = "127.0.0.1";
+                return;
+            }
             try
             {
                 IPAddress.Parse(rconIP.Text);
@@ -81,7 +86,7 @@ namespace MC_Debug_Monitor.Controls
                         
                         if (properties["enable-rcon"].Equals("true"))
                         {
-                            rconIP.Text = properties["server-ip"];
+                            if(properties["server-ip"] != null) rconIP.Text = properties["server-ip"];
                             rconPort.Value = int.Parse(properties["rcon.port"]);
                             rconPass.Text = properties["rcon.password"];
                             System.Media.SystemSounds.Asterisk.Play();
@@ -115,7 +120,7 @@ namespace MC_Debug_Monitor.Controls
                 await Program.mainform.tryConnectServer();
                 if (Program.mainform.isConnectedServer)
                 {
-                    Program.mainform.rcon.OnDisconnected += (Action)Invoke((Action)onConnectServer);
+                    Program.mainform.rcon.OnDisconnected += (Action)Invoke((Action)onDisConnectServer);
                     onConnectServer();
                 }
                 else
@@ -129,6 +134,7 @@ namespace MC_Debug_Monitor.Controls
         {
             disconnectButton.Enabled = true;
             reloadButton.Enabled = true;
+            rconSetting.Enabled = false;
             connectButton.Enabled = false;
         }
 
