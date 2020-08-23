@@ -30,6 +30,7 @@
         {
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.addTabMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.addTestTab = new System.Windows.Forms.ToolStripMenuItem();
             this.editTabMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.closeTab = new System.Windows.Forms.ToolStripMenuItem();
             this.helpMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,6 +57,7 @@
             this.helpMenu});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
+            this.menuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.menuStrip.Size = new System.Drawing.Size(558, 24);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "menuStrip";
@@ -63,9 +65,18 @@
             // 
             // addTabMenu
             // 
+            this.addTabMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addTestTab});
             this.addTabMenu.Name = "addTabMenu";
             this.addTabMenu.Size = new System.Drawing.Size(85, 20);
             this.addTabMenu.Text = "タブの追加(&F)";
+            // 
+            // addTestTab
+            // 
+            this.addTestTab.Name = "addTestTab";
+            this.addTestTab.Size = new System.Drawing.Size(133, 22);
+            this.addTestTab.Text = "テストを追加";
+            this.addTestTab.Click += new System.EventHandler(this.addTestTabClicked);
             // 
             // editTabMenu
             // 
@@ -80,6 +91,7 @@
             this.closeTab.Name = "closeTab";
             this.closeTab.Size = new System.Drawing.Size(131, 22);
             this.closeTab.Text = "タブを閉じる";
+            this.closeTab.Click += new System.EventHandler(this.closeTabClicked);
             // 
             // helpMenu
             // 
@@ -147,7 +159,7 @@
             this.serverMonitor.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.serverMonitor.Location = new System.Drawing.Point(0, 0);
             this.serverMonitor.Name = "serverMonitor";
-            this.serverMonitor.Size = new System.Drawing.Size(550, 327);
+            this.serverMonitor.Size = new System.Drawing.Size(550, 330);
             this.serverMonitor.TabIndex = 0;
             // 
             // scoreboardMonitorPage
@@ -169,7 +181,7 @@
             this.scoreboardMonitor.BackColor = System.Drawing.Color.Transparent;
             this.scoreboardMonitor.Location = new System.Drawing.Point(0, 0);
             this.scoreboardMonitor.Name = "scoreboardMonitor";
-            this.scoreboardMonitor.Size = new System.Drawing.Size(550, 331);
+            this.scoreboardMonitor.Size = new System.Drawing.Size(550, 330);
             this.scoreboardMonitor.TabIndex = 0;
             // 
             // MainForm
@@ -213,6 +225,7 @@
         private System.Windows.Forms.TabPage serverPage;
         private Controls.serverManager serverMonitor;
         private Controls.ScoreboardMonitor scoreboardMonitor;
+        private System.Windows.Forms.ToolStripMenuItem addTestTab;
     }
 }
 

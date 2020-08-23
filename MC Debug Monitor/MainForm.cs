@@ -1,5 +1,7 @@
 ﻿using CoreRCON;
+using MC_Debug_Monitor.Controls;
 using System;
+using System.Diagnostics.Eventing.Reader;
 using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,11 +19,6 @@ namespace MC_Debug_Monitor
         public MainForm()
         {
             InitializeComponent();
-        }
-
-        private void menuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
         }
 
         public void setStatusText(string msg)
@@ -116,6 +113,40 @@ namespace MC_Debug_Monitor
         private void MainForm_Load(object sender, EventArgs e)
         {
             onDisconnectServer();
+        }
+
+        private void menuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        public void addTestTabClicked(object sender, EventArgs e)
+        {
+            string title = "テスト";
+            TabPage tabpage = new TabPage(title);
+            tabpage.Size = new System.Drawing.Size(550, 330);
+            Control control = new TestMonitor();
+            control.Anchor = AnchorStyles.Top | AnchorStyles.Bottom
+            | AnchorStyles.Left
+            | AnchorStyles.Right;
+            control.Size = new System.Drawing.Size(550, 330);
+            tabpage.Controls.Add(control);
+            mainTabControl.TabPages.Add(tabpage);
+            mainTabControl.SelectedIndex = (mainTabControl.TabCount - 1);
+        }
+
+        public void closeTabClicked(object sender, EventArgs e)
+        {
+            int index = mainTabControl.SelectedIndex;
+            if(index >= 2)
+            {
+                mainTabControl.SelectedIndex = index - 1;
+                mainTabControl.TabPages.RemoveAt(index);
+            }
+            else
+            {
+                MessageBox.Show("このタブは削除できません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
