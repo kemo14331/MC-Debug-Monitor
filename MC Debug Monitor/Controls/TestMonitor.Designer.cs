@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.testMonitorGroup = new System.Windows.Forms.GroupBox();
             this.testView = new System.Windows.Forms.DataGridView();
             this.testControlGroup = new System.Windows.Forms.GroupBox();
@@ -53,6 +54,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.testViewMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.copyCommand = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyResult = new System.Windows.Forms.ToolStripMenuItem();
             this.testMonitorGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.testView)).BeginInit();
             this.testControlGroup.SuspendLayout();
@@ -60,6 +64,7 @@
             this.hotkeySettingGroup.SuspendLayout();
             this.editGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.markerColor)).BeginInit();
+            this.testViewMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // testMonitorGroup
@@ -100,6 +105,7 @@
             this.testView.TabIndex = 6;
             this.testView.Text = "dataGridView1";
             this.testView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.testView_CellClick);
+            this.testView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.testView_CellMouseClick);
             this.testView.SelectionChanged += new System.EventHandler(this.testView_SelectionChanged);
             // 
             // testControlGroup
@@ -288,7 +294,7 @@
             // 
             // addTestButton
             // 
-            this.addTestButton.Location = new System.Drawing.Point(173, 103);
+            this.addTestButton.Location = new System.Drawing.Point(173, 104);
             this.addTestButton.Name = "addTestButton";
             this.addTestButton.Size = new System.Drawing.Size(75, 23);
             this.addTestButton.TabIndex = 5;
@@ -335,9 +341,31 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(7, 23);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 15);
+            this.label1.Size = new System.Drawing.Size(25, 15);
             this.label1.TabIndex = 0;
-            this.label1.Text = "マーカー";
+            this.label1.Text = "タグ";
+            // 
+            // testViewMenu
+            // 
+            this.testViewMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyCommand,
+            this.copyResult});
+            this.testViewMenu.Name = "testViewMenu";
+            this.testViewMenu.Size = new System.Drawing.Size(212, 48);
+            // 
+            // copyCommand
+            // 
+            this.copyCommand.Name = "copyCommand";
+            this.copyCommand.Size = new System.Drawing.Size(211, 22);
+            this.copyCommand.Text = "コマンドをクリップボードにコピー";
+            this.copyCommand.Click += new System.EventHandler(this.copyCommand_Click);
+            // 
+            // copyResult
+            // 
+            this.copyResult.Name = "copyResult";
+            this.copyResult.Size = new System.Drawing.Size(211, 22);
+            this.copyResult.Text = "Resultをクリップボードにコピー";
+            this.copyResult.Click += new System.EventHandler(this.copyResult_Click);
             // 
             // TestMonitor
             // 
@@ -357,6 +385,7 @@
             this.editGroup.ResumeLayout(false);
             this.editGroup.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.markerColor)).EndInit();
+            this.testViewMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -388,5 +417,8 @@
         private System.Windows.Forms.Button exportButton;
         private System.Windows.Forms.Button importButton;
         private System.Windows.Forms.Button deleteTestButton;
+        private System.Windows.Forms.ContextMenuStrip testViewMenu;
+        private System.Windows.Forms.ToolStripMenuItem copyCommand;
+        private System.Windows.Forms.ToolStripMenuItem copyResult;
     }
 }

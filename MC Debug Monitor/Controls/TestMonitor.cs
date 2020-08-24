@@ -117,9 +117,16 @@ namespace MC_Debug_Monitor.Controls
             }
         }
 
-        private void addTestButton_Click(object sender, EventArgs e)
+        private void addTestButton_Click(object sender,  EventArgs e)
         {
-            tests.Rows.Add(markerColor.Image, title.Text, commandBox.Text, "");
+            if (commandBox.Text.Length > 2)
+            {
+                tests.Rows.Add(markerColor.Image, title.Text, commandBox.Text, " ");
+            }
+            else
+            {
+                MessageBox.Show("コマンドを入力してください", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void updateEditTest(DataRow row)
@@ -182,10 +189,13 @@ namespace MC_Debug_Monitor.Controls
 
         private void testView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int index = testView.SelectedCells[0].RowIndex;
-            testView.ClearSelection();
-            testView.Rows[index].Selected = true;
-            updateEditTest(((DataRowView)testView.Rows[index].DataBoundItem).Row);
+            if (testView.SelectedCells.Count > 0)
+            {
+                int index = testView.SelectedCells[0].RowIndex;
+                testView.ClearSelection();
+                testView.Rows[index].Selected = true;
+                updateEditTest(((DataRowView)testView.Rows[index].DataBoundItem).Row);
+            }
         }
 
         private void mergeEditTest(int index)
@@ -199,6 +209,11 @@ namespace MC_Debug_Monitor.Controls
 
         private void mergeTestButton_Click(object sender, EventArgs e)
         {
+            if(commandBox.Text.Length < 2)
+            {
+                MessageBox.Show("コマンドを入力してください", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             if (testView.SelectedRows.Count > 0)
             {
                 DataRow dr = ((DataRowView)testView.SelectedRows[0].DataBoundItem).Row;
@@ -240,7 +255,7 @@ namespace MC_Debug_Monitor.Controls
                 }
                 else
                 {
-                    tests.Rows.Add(markerColor.Image, title.Text, commandBox.Text, "");
+                    tests.Rows.Add(markerColor.Image, title.Text, commandBox.Text, " ");
                     tests.AcceptChanges();
                 }
             }
@@ -269,6 +284,35 @@ namespace MC_Debug_Monitor.Controls
                 tests.Rows[index][3] = result;
                 tests.AcceptChanges();
                 index ++;
+            }
+        }
+
+
+        private void copyCommand_Click(object sender, EventArgs e)
+        {
+            if(testView.SelectedRows.Count > 0)
+            {
+                DataRow dr = ((DataRowView)testView.SelectedRows[0].DataBoundItem).Row;
+                int index = tests.Rows.IndexOf(dr);
+                Clipboard.SetText((string)tests.Rows[index][2]);
+            }
+        }
+
+        private void copyResult_Click(object sender, EventArgs e)
+        {
+            if (testView.SelectedRows.Count > 0)
+            {
+                DataRow dr = ((DataRowView)testView.SelectedRows[0].DataBoundItem).Row;
+                int index = tests.Rows.IndexOf(dr);
+                Clipboard.SetText((string)tests.Rows[index][3]);
+            }
+        }
+
+        private void testView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                testViewMenu.Show(MousePosition);
             }
         }
     }
