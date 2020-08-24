@@ -6,6 +6,7 @@ namespace MC_Debug_Monitor.Controls
 {
     public partial class RemovableControl : UserControl
     {
+
         public RemovableControl()
         {
             InitializeComponent();
@@ -33,5 +34,10 @@ namespace MC_Debug_Monitor.Controls
         /// サーバーの接続が切断された時に呼び出される
         /// </summary>
         public virtual void onDisconnectServer() { }
+
+        /// <summary>
+        /// タブが閉じられた時呼び出される
+        /// </summary>
+        public virtual void onClosedTab() { }
     }
 }

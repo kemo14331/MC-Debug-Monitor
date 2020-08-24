@@ -22,6 +22,9 @@ namespace MC_Debug_Monitor.Controls
         public Color Mcolor = Color.FromArgb(255, 255, 0, 0);
         public DataTable tests = new DataTable();
 
+        private Keys hotKeyCode;
+        private HotKey hotkey;
+
 
         public TestMonitor()
         {
@@ -33,6 +36,8 @@ namespace MC_Debug_Monitor.Controls
             resultViewSetup();
             mergeTestButton.Enabled = false;
             deleteTestButton.Enabled = false;
+            enableHotkey.Enabled = false;
+            Ctrl.Checked = true;
             testControlGroup.Enabled = mainform.isConnectedServer;
         }
 
@@ -55,7 +60,6 @@ namespace MC_Debug_Monitor.Controls
             tests.Columns.Add("Title");
             tests.Columns.Add("Command");
             tests.Columns.Add("Result");
-            tests.PrimaryKey = new DataColumn[] { tests.Columns["Title"] };
             tests.AcceptChanges();
             testView.DataSource = tests;
             testView.Update();
@@ -72,10 +76,6 @@ namespace MC_Debug_Monitor.Controls
                     testView.Columns[1].Visible = false;
                     testView.Columns[2].FillWeight = 50;
                 }
-            });
-
-            testView.SizeChanged += new EventHandler((obj, a) => {
-                testView.Columns[0].Width = 10;
             });
 
             // プロパティ設定の取得
@@ -194,20 +194,28 @@ namespace MC_Debug_Monitor.Controls
 
         private async void runTest()
         {
-            sw.Start();
-            int index = 0;
-            foreach(DataRow row in tests.Rows)
-            {
-                string result = await mainform.sendCommand((string)row["Command"]);
-                if (!getRawResult.Checked) result = MCCommand.getResultString(result);
-                tests.Rows[index][3] = result;
-                tests.AcceptChanges();
-                index ++;
+            try {
+                sw.Reset();
+                sw.Start();
+                int index = 0;
+                foreach (DataRow row in tests.Rows)
+                {
+                    string result = await mainform.sendCommand((string)row["Command"]);
+                    if (!getRawResult.Checked) result = MCCommand.getResultString(result);
+                    tests.Rows[index]["Result"] = result;
+                    tests.AcceptChanges();
+                    index++;
+                }
+                sw.Stop();
+                Invoke((Action)(() => {
+                    mainform.setStatusText(String.Format("{0}個のテストを実行しました({1}ms)", tests.Rows.Count, sw.ElapsedMilliseconds));
+                }));
             }
-            sw.Stop();
-            mainform.setStatusText(String.Format("{0}個のテストを実行しました({1}ms)", tests.Rows.Count, sw.ElapsedMilliseconds));
+            catch
+            {
+                MessageBox.Show("テストの実行に失敗しました", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
-
 
         private void copyCommand_Click(object sender, EventArgs e)
         {
@@ -287,6 +295,64 @@ namespace MC_Debug_Monitor.Controls
                 }
                 mainform.setStatusText(String.Format("エクスポート完了: {0}項目", tests.Rows.Count));
             }
+        }
+
+        private void enableHotkey_CheckedChanged(object sender, EventArgs e)
+        {
+            if (enableHotkey.Checked)
+            {
+                MOD_KEY modkey = MOD_KEY.CONTROL;
+                if (Alt.Checked) modkey |= MOD_KEY.ALT;
+                if (Shift.Checked) modkey |= MOD_KEY.SHIFT;
+                hotkey = new HotKey(modkey, hotKeyCode);
+                if (hotkey.OK)
+                {
+                    hotkey.HotKeyPush += new EventHandler((obj, e) => {
+                        if (mainform.isConnectedServer) runTest();
+                    });
+                    Alt.Enabled = false;
+                    Shift.Enabled = false;
+                    Ctrl.Enabled = false;
+                    mainform.setStatusText("ホットキーを登録しました");
+                }
+                else
+                {
+                    enableHotkey.Checked = false;
+                    System.Media.SystemSounds.Beep.Play();
+                    mainform.setStatusText("ホットキーはすでに登録されています");
+                }
+            }
+            else
+            {
+                Alt.Enabled = true;
+                Shift.Enabled = true;
+                Ctrl.Enabled = true;
+                hotkey.Dispose();
+                mainform.setStatusText("ホットキーの登録を解除しました");
+            }
+        }
+
+        private void Ctrl_CheckedChanged(object sender, EventArgs e)
+        {
+            Ctrl.Checked = true;
+        }
+
+        private void maskedTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            if(maskedTextBox1.Text.Length > 0)
+            {
+                enableHotkey.Enabled = true;
+                hotKeyCode = (Keys)Enum.Parse(typeof(Keys), maskedTextBox1.Text[0].ToString(), ignoreCase: true);
+            }
+            else
+            {
+                enableHotkey.Enabled = false;
+            }
+        }
+
+        public override void onClosedTab()
+        {
+            if (hotkey != null) hotkey.Dispose();
         }
     }
 }

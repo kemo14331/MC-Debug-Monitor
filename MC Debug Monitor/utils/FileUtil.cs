@@ -110,7 +110,6 @@ namespace MC_Debug_Monitor.utils
             dtb.Columns.Add("Title");
             dtb.Columns.Add("Command");
             dtb.Columns.Add("Result");
-            dtb.PrimaryKey = new DataColumn[] { dtb.Columns["Title"] };
             StreamReader sr = new StreamReader(stream);
             string title = " ";
             string titleTrigger = "# @Title:";

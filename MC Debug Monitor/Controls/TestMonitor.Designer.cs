@@ -206,6 +206,7 @@
             this.maskedTextBox1.Size = new System.Drawing.Size(22, 23);
             this.maskedTextBox1.TabIndex = 4;
             this.maskedTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.maskedTextBox1.TextChanged += new System.EventHandler(this.maskedTextBox1_TextChanged);
             // 
             // enableHotkey
             // 
@@ -216,6 +217,7 @@
             this.enableHotkey.TabIndex = 3;
             this.enableHotkey.Text = "ホットキーを使用する";
             this.enableHotkey.UseVisualStyleBackColor = true;
+            this.enableHotkey.CheckedChanged += new System.EventHandler(this.enableHotkey_CheckedChanged);
             // 
             // Alt
             // 
@@ -246,6 +248,7 @@
             this.Ctrl.TabIndex = 0;
             this.Ctrl.Text = "Ctrl";
             this.Ctrl.UseVisualStyleBackColor = true;
+            this.Ctrl.CheckedChanged += new System.EventHandler(this.Ctrl_CheckedChanged);
             // 
             // editGroup
             // 

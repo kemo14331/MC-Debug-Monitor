@@ -141,6 +141,8 @@ namespace MC_Debug_Monitor
             if(index >= 2)
             {
                 mainTabControl.SelectedIndex = index - 1;
+                RemovableControl rmc = (RemovableControl)mainTabControl.TabPages[index].Controls[0];
+                rmc.onClosedTab();
                 mainTabControl.TabPages.RemoveAt(index);
             }
             else
