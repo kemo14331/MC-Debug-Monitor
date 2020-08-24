@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Text;
@@ -94,6 +95,48 @@ namespace MC_Debug_Monitor.utils
 
             string json = JsonConvert.SerializeObject(datatable);
             File.WriteAllText(filePath, json);
+        }
+
+        public static DataTable loadTestDataFromJson(Stream stream)
+        {
+            StreamReader sr = new System.IO.StreamReader(stream);
+            string jsonText = sr.ReadToEnd();
+            return JsonConvert.DeserializeObject<DataTable>(jsonText);
+        }
+
+        public static DataTable loadTestDataFromMCF(Stream stream)
+        {
+            DataTable dtb = new DataTable();
+            dtb.Columns.Add("Title");
+            dtb.Columns.Add("Command");
+            dtb.Columns.Add("Result");
+            dtb.PrimaryKey = new DataColumn[] { dtb.Columns["Title"] };
+            StreamReader sr = new StreamReader(stream);
+            string title = " ";
+            string titleTrigger = "# @Title:";
+            while (!sr.EndOfStream)
+            {
+                string line = sr.ReadLine();
+                int index = line.IndexOf(titleTrigger);
+                if(index != -1)
+                {
+                    title = line.Substring(index + titleTrigger.Length);
+                }
+                if (line[0].Equals('#')) continue;
+                dtb.Rows.Add(title, line, " ");
+            }
+            return dtb;
+        }
+
+        public static void saveTestDataToMCF(DataTable dtb, Stream stream)
+        {
+            StreamWriter sw = new StreamWriter(stream);
+            foreach(DataRow row in dtb.Rows)
+            {
+                sw.WriteLine("# @Title:" + row[0]);
+                sw.WriteLine(row[1]);
+            }
+            sw.Close();
         }
 
     }

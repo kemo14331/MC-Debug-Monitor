@@ -45,9 +45,9 @@
             this.Shift = new System.Windows.Forms.CheckBox();
             this.Ctrl = new System.Windows.Forms.CheckBox();
             this.editGroup = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.deleteTestButton = new System.Windows.Forms.Button();
             this.mergeTestButton = new System.Windows.Forms.Button();
-            this.markerColor = new System.Windows.Forms.PictureBox();
             this.addTestButton = new System.Windows.Forms.Button();
             this.commandBox = new System.Windows.Forms.TextBox();
             this.title = new System.Windows.Forms.TextBox();
@@ -57,13 +57,14 @@
             this.testViewMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyCommand = new System.Windows.Forms.ToolStripMenuItem();
             this.copyResult = new System.Windows.Forms.ToolStripMenuItem();
+            this.openTestFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.saveTestFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.testMonitorGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.testView)).BeginInit();
             this.testControlGroup.SuspendLayout();
             this.fileGroup.SuspendLayout();
             this.hotkeySettingGroup.SuspendLayout();
             this.editGroup.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.markerColor)).BeginInit();
             this.testViewMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -160,6 +161,7 @@
             this.exportButton.TabIndex = 1;
             this.exportButton.Text = "エクスポート";
             this.exportButton.UseVisualStyleBackColor = true;
+            this.exportButton.Click += new System.EventHandler(this.exportButton_Click);
             // 
             // importButton
             // 
@@ -169,6 +171,7 @@
             this.importButton.TabIndex = 0;
             this.importButton.Text = "インポート";
             this.importButton.UseVisualStyleBackColor = true;
+            this.importButton.Click += new System.EventHandler(this.importButton_Click);
             // 
             // hotkeySettingGroup
             // 
@@ -247,9 +250,9 @@
             // editGroup
             // 
             this.editGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.editGroup.Controls.Add(this.textBox1);
             this.editGroup.Controls.Add(this.deleteTestButton);
             this.editGroup.Controls.Add(this.mergeTestButton);
-            this.editGroup.Controls.Add(this.markerColor);
             this.editGroup.Controls.Add(this.addTestButton);
             this.editGroup.Controls.Add(this.commandBox);
             this.editGroup.Controls.Add(this.title);
@@ -262,6 +265,16 @@
             this.editGroup.TabIndex = 2;
             this.editGroup.TabStop = false;
             this.editGroup.Text = "テストの編集";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Enabled = false;
+            this.textBox1.Location = new System.Drawing.Point(51, 20);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(70, 23);
+            this.textBox1.TabIndex = 9;
+            this.textBox1.Text = "未実装";
             // 
             // deleteTestButton
             // 
@@ -282,15 +295,6 @@
             this.mergeTestButton.Text = "編集の適用";
             this.mergeTestButton.UseVisualStyleBackColor = true;
             this.mergeTestButton.Click += new System.EventHandler(this.mergeTestButton_Click);
-            // 
-            // markerColor
-            // 
-            this.markerColor.Location = new System.Drawing.Point(51, 19);
-            this.markerColor.Name = "markerColor";
-            this.markerColor.Size = new System.Drawing.Size(23, 23);
-            this.markerColor.TabIndex = 6;
-            this.markerColor.TabStop = false;
-            this.markerColor.Click += new System.EventHandler(this.markerColor_Click);
             // 
             // addTestButton
             // 
@@ -367,6 +371,17 @@
             this.copyResult.Text = "Resultをクリップボードにコピー";
             this.copyResult.Click += new System.EventHandler(this.copyResult_Click);
             // 
+            // openTestFileDialog
+            // 
+            this.openTestFileDialog.Filter = "mcfunctionファイル|*.mcfunction|テストJSONファイル|*.json";
+            this.openTestFileDialog.Title = "テストデータのインポート";
+            // 
+            // saveTestFileDialog
+            // 
+            this.saveTestFileDialog.FileName = "testdata.csv";
+            this.saveTestFileDialog.Filter = "CSVファイル|*.csv|JSONファイル|*.json|MCFunction|*.mcfunction";
+            this.saveTestFileDialog.Title = "テストデータのエクスポート";
+            // 
             // TestMonitor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -384,7 +399,6 @@
             this.hotkeySettingGroup.PerformLayout();
             this.editGroup.ResumeLayout(false);
             this.editGroup.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.markerColor)).EndInit();
             this.testViewMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -401,7 +415,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button addTestButton;
-        private System.Windows.Forms.PictureBox markerColor;
         private System.Windows.Forms.Button mergeTestButton;
         private System.Windows.Forms.GroupBox fileGroup;
         private System.Windows.Forms.CheckBox Shift;
@@ -420,5 +433,8 @@
         private System.Windows.Forms.ContextMenuStrip testViewMenu;
         private System.Windows.Forms.ToolStripMenuItem copyCommand;
         private System.Windows.Forms.ToolStripMenuItem copyResult;
+        private System.Windows.Forms.OpenFileDialog openTestFileDialog;
+        private System.Windows.Forms.SaveFileDialog saveTestFileDialog;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

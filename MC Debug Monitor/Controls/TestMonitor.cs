@@ -10,14 +10,18 @@ using System.Drawing.Configuration;
 using System.Numerics;
 using static MC_Debug_Monitor.Program;
 using MC_Debug_Monitor.utils;
+using System.IO;
 
 namespace MC_Debug_Monitor.Controls
 {
     public partial class TestMonitor : RemovableControl
     {
 
+        System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
+
         public Color Mcolor = Color.FromArgb(255, 255, 0, 0);
         public DataTable tests = new DataTable();
+
 
         public TestMonitor()
         {
@@ -29,7 +33,6 @@ namespace MC_Debug_Monitor.Controls
             resultViewSetup();
             mergeTestButton.Enabled = false;
             deleteTestButton.Enabled = false;
-            markerColor.Image = getMarkerImage(Mcolor);
             testControlGroup.Enabled = mainform.isConnectedServer;
         }
 
@@ -49,30 +52,25 @@ namespace MC_Debug_Monitor.Controls
 
         private void resultViewSetup()
         {
-            Bitmap bpm = new Bitmap(1, 1);
-            tests.Columns.Add("M", bpm.GetType());
-            tests.Columns.Add("Tilte");
+            tests.Columns.Add("Title");
             tests.Columns.Add("Command");
             tests.Columns.Add("Result");
+            tests.PrimaryKey = new DataColumn[] { tests.Columns["Title"] };
             tests.AcceptChanges();
             testView.DataSource = tests;
             testView.Update();
             testView.Refresh();
-            bpm.Dispose();
 
             Type dgvtype = typeof(DataGridView);
 
             testView.ColumnAdded += new DataGridViewColumnEventHandler((obj, a) =>
             {
-                if (testView.Columns.Count >= 4)
+                if (testView.Columns.Count >= 3)
                 {
-                    testView.Columns[0].FillWeight = 3;
-                    testView.Columns[0].Width = 10;
-                    testView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-                    testView.Columns[1].FillWeight = 10;
-                    testView.Columns[2].FillWeight = 5;
-                    testView.Columns[2].Visible = false;
-                    testView.Columns[3].FillWeight = 50;
+                    testView.Columns[0].FillWeight = 10;
+                    testView.Columns[1].FillWeight = 5;
+                    testView.Columns[1].Visible = false;
+                    testView.Columns[2].FillWeight = 50;
                 }
             });
 
@@ -89,39 +87,11 @@ namespace MC_Debug_Monitor.Controls
             dgvPropertyInfo.SetValue(testView, true, null);
         }
 
-        private Bitmap getMarkerImage(Color color)
-        {
-            Bitmap bpm = new Bitmap(markerColor.Width, markerColor.Height);
-            Graphics g = Graphics.FromImage(bpm);
-            SolidBrush sb = new SolidBrush(color);
-            g.FillRectangle(sb, 0, 0, markerColor.Width, markerColor.Height);
-            g.DrawRectangle(new Pen(Brushes.Black), 0, 0, markerColor.Width - 1, markerColor.Height - 1);
-            return bpm;
-        }
-
-        private void markerColor_Click(object sender, EventArgs e)
-        {
-            //ColorDialogクラスのインスタンスを作成
-            ColorDialog cd = new ColorDialog();
-
-            cd.Color = Mcolor;
-
-            cd.SolidColorOnly = false;
-
-            //ダイアログを表示する
-            if (cd.ShowDialog() == DialogResult.OK)
-            {
-                //選択された色の取得
-                Mcolor = cd.Color;
-                markerColor.Image = getMarkerImage(Mcolor);
-            }
-        }
-
         private void addTestButton_Click(object sender,  EventArgs e)
         {
             if (commandBox.Text.Length > 2)
             {
-                tests.Rows.Add(markerColor.Image, title.Text, commandBox.Text, " ");
+                tests.Rows.Add(title.Text, commandBox.Text, " ");
             }
             else
             {
@@ -131,60 +101,8 @@ namespace MC_Debug_Monitor.Controls
 
         private void updateEditTest(DataRow row)
         {
-            markerColor.Image = (Bitmap)row[0];
-            title.Text = (string)row[1];
-            commandBox.Text = (string)row[2];
-        }
-
-
-        /// <summary>
-        /// resultsのデータテーブルを一般的なデータテーブルに変換したものを返す
-        /// </summary>
-        private DataTable resultsToGDataTable(DataTable dtin)
-        {
-            DataTable newdt = new DataTable();
-            newdt.Columns.Add("M");
-            newdt.Columns.Add("Title");
-            newdt.Columns.Add("Command");
-            newdt.Columns.Add("Result");
-            newdt.AcceptChanges();
-
-            foreach(DataRow row in dtin.Rows)
-            {
-                Bitmap bmp = (Bitmap)row.ItemArray[0];
-                Color color = bmp.GetPixel(2, 2);
-                int Argb = color.ToArgb();
-                newdt.Rows.Add(Argb, row[1], row[2], row[3]);
-                bmp.Dispose();
-            }
-
-            newdt.AcceptChanges();
-            return newdt;
-        }
-
-        /// <summary>
-        /// 一般的なデータテーブルをresultsのデータテーブルに変換して返す
-        /// </summary>
-        private DataTable dataTableToResults(DataTable dtin)
-        {
-            DataTable newdt = new DataTable();
-            Bitmap tmpbpm = new Bitmap(1, 1);
-            newdt.Columns.Add("M", tmpbpm.GetType());
-            newdt.Columns.Add("Title");
-            newdt.Columns.Add("Command");
-            newdt.Columns.Add("Result");
-            newdt.AcceptChanges();
-            tmpbpm.Dispose();
-
-            foreach (DataRow row in dtin.Rows)
-            {
-                Int32 argb = (Int32)row.ItemArray[0];
-                Color color = Color.FromArgb(argb);
-                newdt.Rows.Add(getMarkerImage(color), row[1], row[2], row[3]);
-            }
-
-            newdt.AcceptChanges();
-            return newdt;
+            title.Text = (string)row["Title"];
+            commandBox.Text = (string)row["Command"];
         }
 
         private void testView_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -200,10 +118,9 @@ namespace MC_Debug_Monitor.Controls
 
         private void mergeEditTest(int index)
         {
-            tests.Rows[index][0] = markerColor.Image;
-            tests.Rows[index][1] = title.Text;
-            tests.Rows[index][2] = commandBox.Text;
-            tests.Rows[index][3] = "";
+            tests.Rows[index]["Title"] = title.Text;
+            tests.Rows[index]["Command"] = commandBox.Text;
+            tests.Rows[index]["Result"] = " ";
             tests.AcceptChanges();
         }
 
@@ -255,7 +172,7 @@ namespace MC_Debug_Monitor.Controls
                 }
                 else
                 {
-                    tests.Rows.Add(markerColor.Image, title.Text, commandBox.Text, " ");
+                    tests.Rows.Add(title.Text, commandBox.Text, " ");
                     tests.AcceptChanges();
                 }
             }
@@ -267,6 +184,7 @@ namespace MC_Debug_Monitor.Controls
             int index = tests.Rows.IndexOf(dr);
             tests.Rows.RemoveAt(index);
             tests.AcceptChanges();
+            mainform.setStatusText("テストを削除しました");
         }
 
         private void runTestButton_Click(object sender, EventArgs e)
@@ -276,15 +194,18 @@ namespace MC_Debug_Monitor.Controls
 
         private async void runTest()
         {
+            sw.Start();
             int index = 0;
             foreach(DataRow row in tests.Rows)
             {
-                string result = await mainform.sendCommand((string)row[2]);
+                string result = await mainform.sendCommand((string)row["Command"]);
                 if (!getRawResult.Checked) result = MCCommand.getResultString(result);
                 tests.Rows[index][3] = result;
                 tests.AcceptChanges();
                 index ++;
             }
+            sw.Stop();
+            mainform.setStatusText(String.Format("{0}個のテストを実行しました({1}ms)", tests.Rows.Count, sw.ElapsedMilliseconds));
         }
 
 
@@ -294,7 +215,8 @@ namespace MC_Debug_Monitor.Controls
             {
                 DataRow dr = ((DataRowView)testView.SelectedRows[0].DataBoundItem).Row;
                 int index = tests.Rows.IndexOf(dr);
-                Clipboard.SetText((string)tests.Rows[index][2]);
+                Clipboard.SetText((string)tests.Rows[index]["Command"]);
+                mainform.setStatusText("コマンドをクリップボードにコピーしました");
             }
         }
 
@@ -304,7 +226,8 @@ namespace MC_Debug_Monitor.Controls
             {
                 DataRow dr = ((DataRowView)testView.SelectedRows[0].DataBoundItem).Row;
                 int index = tests.Rows.IndexOf(dr);
-                Clipboard.SetText((string)tests.Rows[index][3]);
+                Clipboard.SetText((string)tests.Rows[index]["Result"]);
+                mainform.setStatusText("結果をクリップボードにコピーしました");
             }
         }
 
@@ -313,6 +236,56 @@ namespace MC_Debug_Monitor.Controls
             if (e.Button == MouseButtons.Right)
             {
                 testViewMenu.Show(MousePosition);
+            }
+        }
+
+        private void importButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = openTestFileDialog;
+            if(ofd.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    switch (Path.GetExtension(ofd.FileName))
+                    {
+                        case ".mcfunction":
+                            tests.Clear();
+                            tests.Merge(FileUtil.loadTestDataFromMCF(ofd.OpenFile()));
+                            tests.AcceptChanges();
+                            break;
+                        case ".json":
+                            tests.Clear();
+                            tests.Merge(FileUtil.loadTestDataFromJson(ofd.OpenFile()));
+                            tests.AcceptChanges();
+                            break;
+                    }
+                    mainform.setStatusText(String.Format("インポート完了: {0}項目", tests.Rows.Count));
+                }
+                catch
+                {
+                    MessageBox.Show("ファイルのインポートに失敗しました。\nファイルが正しいか確認してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void exportButton_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = saveTestFileDialog;
+            if(sfd.ShowDialog() == DialogResult.OK)
+            {
+                switch (Path.GetExtension(sfd.FileName))
+                {
+                    case ".csv":
+                        FileUtil.saveDataTableToCSV(tests, sfd.FileName);
+                        break;
+                    case ".mcfunction":
+                        FileUtil.saveTestDataToMCF(tests, sfd.OpenFile());
+                        break;
+                    case ".json":
+                        FileUtil.saveDataTableToJson(tests, sfd.FileName);
+                        break;
+                }
+                mainform.setStatusText(String.Format("エクスポート完了: {0}項目", tests.Rows.Count));
             }
         }
     }
