@@ -44,6 +44,7 @@
             this.Shift = new System.Windows.Forms.CheckBox();
             this.Ctrl = new System.Windows.Forms.CheckBox();
             this.editGroup = new System.Windows.Forms.GroupBox();
+            this.deleteTestButton = new System.Windows.Forms.Button();
             this.mergeTestButton = new System.Windows.Forms.Button();
             this.markerColor = new System.Windows.Forms.PictureBox();
             this.addTestButton = new System.Windows.Forms.Button();
@@ -52,7 +53,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.deleteTestButton = new System.Windows.Forms.Button();
             this.testMonitorGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.testView)).BeginInit();
             this.testControlGroup.SuspendLayout();
@@ -132,6 +132,7 @@
             this.runTestButton.TabIndex = 0;
             this.runTestButton.Text = "テストの実行";
             this.runTestButton.UseVisualStyleBackColor = true;
+            this.runTestButton.Click += new System.EventHandler(this.runTestButton_Click);
             // 
             // fileGroup
             // 
@@ -256,6 +257,16 @@
             this.editGroup.TabStop = false;
             this.editGroup.Text = "テストの編集";
             // 
+            // deleteTestButton
+            // 
+            this.deleteTestButton.Location = new System.Drawing.Point(6, 104);
+            this.deleteTestButton.Name = "deleteTestButton";
+            this.deleteTestButton.Size = new System.Drawing.Size(42, 23);
+            this.deleteTestButton.TabIndex = 8;
+            this.deleteTestButton.Text = "削除";
+            this.deleteTestButton.UseVisualStyleBackColor = true;
+            this.deleteTestButton.Click += new System.EventHandler(this.deleteTestButton_Click);
+            // 
             // mergeTestButton
             // 
             this.mergeTestButton.Location = new System.Drawing.Point(92, 104);
@@ -327,16 +338,6 @@
             this.label1.Size = new System.Drawing.Size(41, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "マーカー";
-            // 
-            // deleteTestButton
-            // 
-            this.deleteTestButton.Location = new System.Drawing.Point(6, 104);
-            this.deleteTestButton.Name = "deleteTestButton";
-            this.deleteTestButton.Size = new System.Drawing.Size(42, 23);
-            this.deleteTestButton.TabIndex = 8;
-            this.deleteTestButton.Text = "削除";
-            this.deleteTestButton.UseVisualStyleBackColor = true;
-            this.deleteTestButton.Click += new System.EventHandler(this.deleteTestButton_Click);
             // 
             // TestMonitor
             // 

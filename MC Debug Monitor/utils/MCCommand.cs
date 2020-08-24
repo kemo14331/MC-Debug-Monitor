@@ -19,7 +19,7 @@ namespace MC_Debug_Monitor.utils
             {
                 return str.Substring(index + 2);
             }
-            return null;
+            return str;
         }
     }
 }

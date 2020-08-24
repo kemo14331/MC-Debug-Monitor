@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Drawing.Configuration;
 using System.Numerics;
 using static MC_Debug_Monitor.Program;
+using MC_Debug_Monitor.utils;
 
 namespace MC_Debug_Monitor.Controls
 {
@@ -35,7 +36,7 @@ namespace MC_Debug_Monitor.Controls
         public override void onConnectServer()
         {
             base.onConnectServer();
-            testControlGroup.Enabled = false;
+            testControlGroup.Enabled = true;
             enableHotkey.Enabled = true;
         }
 
@@ -251,6 +252,24 @@ namespace MC_Debug_Monitor.Controls
             int index = tests.Rows.IndexOf(dr);
             tests.Rows.RemoveAt(index);
             tests.AcceptChanges();
+        }
+
+        private void runTestButton_Click(object sender, EventArgs e)
+        {
+            runTest();
+        }
+
+        private async void runTest()
+        {
+            int index = 0;
+            foreach(DataRow row in tests.Rows)
+            {
+                string result = await mainform.sendCommand((string)row[2]);
+                if (!getRawResult.Checked) result = MCCommand.getResultString(result);
+                tests.Rows[index][3] = result;
+                tests.AcceptChanges();
+                index ++;
+            }
         }
     }
 }
