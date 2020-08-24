@@ -235,6 +235,7 @@
             this.scoreboardView.Size = new System.Drawing.Size(390, 301);
             this.scoreboardView.TabIndex = 0;
             this.scoreboardView.Text = "dataGridView1";
+            this.scoreboardView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.scoreboardView_CellContentClick);
             // 
             // ScoreboardMonitor
             // 

@@ -95,5 +95,6 @@ namespace MC_Debug_Monitor.utils
             string json = JsonConvert.SerializeObject(datatable);
             File.WriteAllText(filePath, json);
         }
+
     }
 }

@@ -396,5 +396,10 @@ namespace MC_Debug_Monitor.Controls
                 }
             }
         }
+
+        private void scoreboardView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
