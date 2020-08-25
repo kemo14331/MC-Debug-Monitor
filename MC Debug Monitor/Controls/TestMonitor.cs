@@ -45,14 +45,12 @@ namespace MC_Debug_Monitor.Controls
         {
             base.onConnectServer();
             testControlGroup.Enabled = true;
-            enableHotkey.Enabled = true;
         }
 
         public override void onDisconnectServer()
         {
             base.onDisconnectServer();
             testControlGroup.Enabled = false;
-            enableHotkey.Enabled = false;
         }
 
         private void resultViewSetup()
@@ -62,6 +60,10 @@ namespace MC_Debug_Monitor.Controls
             tests.Columns.Add("Result");
             tests.AcceptChanges();
             testView.DataSource = tests;
+            foreach (DataGridViewColumn c in testView.Columns)
+            {
+                c.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
             testView.Update();
             testView.Refresh();
 
@@ -92,6 +94,8 @@ namespace MC_Debug_Monitor.Controls
             if (commandBox.Text.Length > 2)
             {
                 tests.Rows.Add(title.Text, commandBox.Text, " ");
+                commandBox.Text = "";
+                title.Text = "";
             }
             else
             {
@@ -180,10 +184,19 @@ namespace MC_Debug_Monitor.Controls
 
         private void deleteTestButton_Click(object sender, EventArgs e)
         {
+            deleteTest();
+        }
+
+        private void deleteTest()
+        {
             DataRow dr = ((DataRowView)testView.SelectedRows[0].DataBoundItem).Row;
             int index = tests.Rows.IndexOf(dr);
             tests.Rows.RemoveAt(index);
+            testView.ClearSelection();
+            if (index > 0) testView.Rows[index - 1].Selected = true;
             tests.AcceptChanges();
+            commandBox.Text = "";
+            title.Text = "";
             mainform.setStatusText("テストを削除しました");
         }
 

@@ -57,8 +57,10 @@
             this.testViewMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyCommand = new System.Windows.Forms.ToolStripMenuItem();
             this.copyResult = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteTestMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.openTestFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveTestFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.testMonitorGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.testView)).BeginInit();
             this.testControlGroup.SuspendLayout();
@@ -73,6 +75,7 @@
             this.testMonitorGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.testMonitorGroup.BackColor = System.Drawing.Color.Transparent;
             this.testMonitorGroup.Controls.Add(this.testView);
             this.testMonitorGroup.Controls.Add(this.testControlGroup);
             this.testMonitorGroup.Controls.Add(this.fileGroup);
@@ -93,7 +96,6 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.testView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.testView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.testView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.testView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.testView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -356,9 +358,11 @@
             // 
             this.testViewMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.copyCommand,
-            this.copyResult});
+            this.copyResult,
+            this.toolStripSeparator1,
+            this.deleteTestMenu});
             this.testViewMenu.Name = "testViewMenu";
-            this.testViewMenu.Size = new System.Drawing.Size(212, 48);
+            this.testViewMenu.Size = new System.Drawing.Size(212, 76);
             // 
             // copyCommand
             // 
@@ -374,6 +378,13 @@
             this.copyResult.Text = "Resultをクリップボードにコピー";
             this.copyResult.Click += new System.EventHandler(this.copyResult_Click);
             // 
+            // deleteTestMenu
+            // 
+            this.deleteTestMenu.Name = "deleteTestMenu";
+            this.deleteTestMenu.Size = new System.Drawing.Size(211, 22);
+            this.deleteTestMenu.Text = "テストの削除";
+            this.deleteTestMenu.Click += new System.EventHandler(this.deleteTestButton_Click);
+            // 
             // openTestFileDialog
             // 
             this.openTestFileDialog.Filter = "mcfunctionファイル|*.mcfunction|テストJSONファイル|*.json";
@@ -384,6 +395,11 @@
             this.saveTestFileDialog.FileName = "testdata.csv";
             this.saveTestFileDialog.Filter = "CSVファイル|*.csv|JSONファイル|*.json|MCFunction|*.mcfunction";
             this.saveTestFileDialog.Title = "テストデータのエクスポート";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(208, 6);
             // 
             // TestMonitor
             // 
@@ -439,5 +455,7 @@
         private System.Windows.Forms.OpenFileDialog openTestFileDialog;
         private System.Windows.Forms.SaveFileDialog saveTestFileDialog;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ToolStripMenuItem deleteTestMenu;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }
