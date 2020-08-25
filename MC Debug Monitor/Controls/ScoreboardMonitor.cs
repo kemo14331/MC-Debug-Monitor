@@ -348,6 +348,7 @@ namespace MC_Debug_Monitor.Controls
         private void useAutoUpdate_CheckedChanged(object sender, EventArgs e)
         {
             scoreboardTimer.Enabled = useAutoUpdate.Checked;
+            autoUpdateIntervalBox.Enabled = !useAutoUpdate.Checked;
         }
 
         private void objComboBox_DataSourceChanged(object sender, EventArgs e)

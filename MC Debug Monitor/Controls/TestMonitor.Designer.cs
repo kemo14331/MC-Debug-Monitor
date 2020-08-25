@@ -57,10 +57,10 @@
             this.testViewMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyCommand = new System.Windows.Forms.ToolStripMenuItem();
             this.copyResult = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.deleteTestMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.openTestFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveTestFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.testMonitorGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.testView)).BeginInit();
             this.testControlGroup.SuspendLayout();
@@ -92,6 +92,7 @@
             // 
             this.testView.AllowUserToAddRows = false;
             this.testView.AllowUserToDeleteRows = false;
+            this.testView.AllowUserToResizeRows = false;
             this.testView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -378,6 +379,11 @@
             this.copyResult.Text = "Resultをクリップボードにコピー";
             this.copyResult.Click += new System.EventHandler(this.copyResult_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(208, 6);
+            // 
             // deleteTestMenu
             // 
             this.deleteTestMenu.Name = "deleteTestMenu";
@@ -395,11 +401,6 @@
             this.saveTestFileDialog.FileName = "testdata.csv";
             this.saveTestFileDialog.Filter = "CSVファイル|*.csv|JSONファイル|*.json|MCFunction|*.mcfunction";
             this.saveTestFileDialog.Title = "テストデータのエクスポート";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(208, 6);
             // 
             // TestMonitor
             // 

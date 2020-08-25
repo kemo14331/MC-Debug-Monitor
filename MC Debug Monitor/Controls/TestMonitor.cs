@@ -179,6 +179,8 @@ namespace MC_Debug_Monitor.Controls
                     tests.Rows.Add(title.Text, commandBox.Text, " ");
                     tests.AcceptChanges();
                 }
+                commandBox.Text = "";
+                title.Text = "";
             }
         }
 
