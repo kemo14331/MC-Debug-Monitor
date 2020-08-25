@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.testMonitorGroup = new System.Windows.Forms.GroupBox();
+            this.hotkeyResister1 = new MC_Debug_Monitor.Controls.HotkeyResister();
             this.testView = new System.Windows.Forms.DataGridView();
             this.testControlGroup = new System.Windows.Forms.GroupBox();
             this.getRawResult = new System.Windows.Forms.CheckBox();
@@ -37,13 +38,6 @@
             this.fileGroup = new System.Windows.Forms.GroupBox();
             this.exportButton = new System.Windows.Forms.Button();
             this.importButton = new System.Windows.Forms.Button();
-            this.hotkeySettingGroup = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
-            this.enableHotkey = new System.Windows.Forms.CheckBox();
-            this.Alt = new System.Windows.Forms.CheckBox();
-            this.Shift = new System.Windows.Forms.CheckBox();
-            this.Ctrl = new System.Windows.Forms.CheckBox();
             this.editGroup = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.deleteTestButton = new System.Windows.Forms.Button();
@@ -65,7 +59,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.testView)).BeginInit();
             this.testControlGroup.SuspendLayout();
             this.fileGroup.SuspendLayout();
-            this.hotkeySettingGroup.SuspendLayout();
             this.editGroup.SuspendLayout();
             this.testViewMenu.SuspendLayout();
             this.SuspendLayout();
@@ -76,10 +69,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.testMonitorGroup.BackColor = System.Drawing.Color.Transparent;
+            this.testMonitorGroup.Controls.Add(this.hotkeyResister1);
             this.testMonitorGroup.Controls.Add(this.testView);
             this.testMonitorGroup.Controls.Add(this.testControlGroup);
             this.testMonitorGroup.Controls.Add(this.fileGroup);
-            this.testMonitorGroup.Controls.Add(this.hotkeySettingGroup);
             this.testMonitorGroup.Controls.Add(this.editGroup);
             this.testMonitorGroup.Location = new System.Drawing.Point(0, 0);
             this.testMonitorGroup.Name = "testMonitorGroup";
@@ -87,6 +80,17 @@
             this.testMonitorGroup.TabIndex = 0;
             this.testMonitorGroup.TabStop = false;
             this.testMonitorGroup.Text = "テストの実行";
+            // 
+            // hotkeyResister1
+            // 
+            this.hotkeyResister1.Location = new System.Drawing.Point(291, 161);
+            this.hotkeyResister1.Name = "hotkeyResister1";
+            this.hotkeyResister1.Size = new System.Drawing.Size(253, 76);
+            this.hotkeyResister1.TabIndex = 10;
+            this.hotkeyResister1.HotKeyPush += new System.EventHandler(this.hotkeyResister1_HotKeyPush);
+            this.hotkeyResister1.onHotKeyResister += new System.EventHandler(this.hotkeyResister1_onHotKeyResister);
+            this.hotkeyResister1.onFaildHotKeyResister += new System.EventHandler(this.hotkeyResister1_onFaildHotKeyResister);
+            this.hotkeyResister1.onHotKeyDisResister += new System.EventHandler(this.hotkeyResister1_onHotKeyDisResister);
             // 
             // testView
             // 
@@ -176,83 +180,6 @@
             this.importButton.UseVisualStyleBackColor = true;
             this.importButton.Click += new System.EventHandler(this.importButton_Click);
             // 
-            // hotkeySettingGroup
-            // 
-            this.hotkeySettingGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.hotkeySettingGroup.Controls.Add(this.label4);
-            this.hotkeySettingGroup.Controls.Add(this.maskedTextBox1);
-            this.hotkeySettingGroup.Controls.Add(this.enableHotkey);
-            this.hotkeySettingGroup.Controls.Add(this.Alt);
-            this.hotkeySettingGroup.Controls.Add(this.Shift);
-            this.hotkeySettingGroup.Controls.Add(this.Ctrl);
-            this.hotkeySettingGroup.Location = new System.Drawing.Point(290, 161);
-            this.hotkeySettingGroup.Name = "hotkeySettingGroup";
-            this.hotkeySettingGroup.Size = new System.Drawing.Size(254, 76);
-            this.hotkeySettingGroup.TabIndex = 3;
-            this.hotkeySettingGroup.TabStop = false;
-            this.hotkeySettingGroup.Text = "ホットキーの設定";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(147, 48);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(29, 15);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Key:";
-            // 
-            // maskedTextBox1
-            // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(182, 45);
-            this.maskedTextBox1.Mask = ">L";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(22, 23);
-            this.maskedTextBox1.TabIndex = 4;
-            this.maskedTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.maskedTextBox1.TextChanged += new System.EventHandler(this.maskedTextBox1_TextChanged);
-            // 
-            // enableHotkey
-            // 
-            this.enableHotkey.AutoSize = true;
-            this.enableHotkey.Location = new System.Drawing.Point(6, 22);
-            this.enableHotkey.Name = "enableHotkey";
-            this.enableHotkey.Size = new System.Drawing.Size(121, 19);
-            this.enableHotkey.TabIndex = 3;
-            this.enableHotkey.Text = "ホットキーを使用する";
-            this.enableHotkey.UseVisualStyleBackColor = true;
-            this.enableHotkey.CheckedChanged += new System.EventHandler(this.enableHotkey_CheckedChanged);
-            // 
-            // Alt
-            // 
-            this.Alt.AutoSize = true;
-            this.Alt.Location = new System.Drawing.Point(100, 47);
-            this.Alt.Name = "Alt";
-            this.Alt.Size = new System.Drawing.Size(41, 19);
-            this.Alt.TabIndex = 2;
-            this.Alt.Text = "Alt";
-            this.Alt.UseVisualStyleBackColor = true;
-            // 
-            // Shift
-            // 
-            this.Shift.AutoSize = true;
-            this.Shift.Location = new System.Drawing.Point(51, 47);
-            this.Shift.Name = "Shift";
-            this.Shift.Size = new System.Drawing.Size(50, 19);
-            this.Shift.TabIndex = 1;
-            this.Shift.Text = "Shift";
-            this.Shift.UseVisualStyleBackColor = true;
-            // 
-            // Ctrl
-            // 
-            this.Ctrl.AutoSize = true;
-            this.Ctrl.Location = new System.Drawing.Point(6, 47);
-            this.Ctrl.Name = "Ctrl";
-            this.Ctrl.Size = new System.Drawing.Size(44, 19);
-            this.Ctrl.TabIndex = 0;
-            this.Ctrl.Text = "Ctrl";
-            this.Ctrl.UseVisualStyleBackColor = true;
-            this.Ctrl.CheckedChanged += new System.EventHandler(this.Ctrl_CheckedChanged);
-            // 
             // editGroup
             // 
             this.editGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -265,9 +192,9 @@
             this.editGroup.Controls.Add(this.label3);
             this.editGroup.Controls.Add(this.label2);
             this.editGroup.Controls.Add(this.label1);
-            this.editGroup.Location = new System.Drawing.Point(290, 22);
+            this.editGroup.Location = new System.Drawing.Point(291, 22);
             this.editGroup.Name = "editGroup";
-            this.editGroup.Size = new System.Drawing.Size(254, 133);
+            this.editGroup.Size = new System.Drawing.Size(253, 133);
             this.editGroup.TabIndex = 2;
             this.editGroup.TabStop = false;
             this.editGroup.Text = "テストの編集";
@@ -415,8 +342,6 @@
             this.testControlGroup.ResumeLayout(false);
             this.testControlGroup.PerformLayout();
             this.fileGroup.ResumeLayout(false);
-            this.hotkeySettingGroup.ResumeLayout(false);
-            this.hotkeySettingGroup.PerformLayout();
             this.editGroup.ResumeLayout(false);
             this.editGroup.PerformLayout();
             this.testViewMenu.ResumeLayout(false);
@@ -427,7 +352,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox testMonitorGroup;
-        private System.Windows.Forms.GroupBox hotkeySettingGroup;
         private System.Windows.Forms.GroupBox editGroup;
         private System.Windows.Forms.TextBox commandBox;
         private System.Windows.Forms.TextBox title;
@@ -437,13 +361,7 @@
         private System.Windows.Forms.Button addTestButton;
         private System.Windows.Forms.Button mergeTestButton;
         private System.Windows.Forms.GroupBox fileGroup;
-        private System.Windows.Forms.CheckBox Shift;
-        private System.Windows.Forms.CheckBox Ctrl;
-        private System.Windows.Forms.CheckBox Alt;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
-        private System.Windows.Forms.CheckBox enableHotkey;
         private System.Windows.Forms.GroupBox testControlGroup;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridView testView;
         private System.Windows.Forms.CheckBox getRawResult;
         private System.Windows.Forms.Button runTestButton;
@@ -458,5 +376,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ToolStripMenuItem deleteTestMenu;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private HotkeyResister hotkeyResister1;
     }
 }

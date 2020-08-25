@@ -16,10 +16,6 @@ namespace MC_Debug_Monitor.Controls
         public Color Mcolor = Color.FromArgb(255, 255, 0, 0);
         public DataTable tests = new DataTable();
 
-        private Keys hotKeyCode;
-        private HotKey hotkey;
-
-
         public TestMonitor()
         {
             InitializeComponent();
@@ -30,8 +26,6 @@ namespace MC_Debug_Monitor.Controls
             resultViewSetup();
             mergeTestButton.Enabled = false;
             deleteTestButton.Enabled = false;
-            enableHotkey.Enabled = false;
-            Ctrl.Checked = true;
             testControlGroup.Enabled = mainform.isConnectedServer;
         }
 
@@ -309,63 +303,32 @@ namespace MC_Debug_Monitor.Controls
             }
         }
 
-        private void enableHotkey_CheckedChanged(object sender, EventArgs e)
+        private void hotkeyResister1_onFaildHotKeyResister(object sender, EventArgs e)
         {
-            if (enableHotkey.Checked)
-            {
-                MOD_KEY modkey = MOD_KEY.CONTROL;
-                if (Alt.Checked) modkey |= MOD_KEY.ALT;
-                if (Shift.Checked) modkey |= MOD_KEY.SHIFT;
-                hotkey = new HotKey(modkey, hotKeyCode);
-                if (hotkey.OK)
-                {
-                    hotkey.HotKeyPush += new EventHandler((obj, e) =>
-                    {
-                        if (mainform.isConnectedServer) runTest();
-                    });
-                    Alt.Enabled = false;
-                    Shift.Enabled = false;
-                    Ctrl.Enabled = false;
-                    mainform.setStatusText("ホットキーを登録しました");
-                }
-                else
-                {
-                    enableHotkey.Checked = false;
-                    System.Media.SystemSounds.Beep.Play();
-                    mainform.setStatusText("ホットキーはすでに登録されています");
-                }
-            }
-            else
-            {
-                Alt.Enabled = true;
-                Shift.Enabled = true;
-                Ctrl.Enabled = true;
-                hotkey.Dispose();
-                mainform.setStatusText("ホットキーの登録を解除しました");
-            }
+            mainform.setStatusText("ホットキーの登録に失敗しました(既に使われています)");
+            System.Media.SystemSounds.Beep.Play();
         }
 
-        private void Ctrl_CheckedChanged(object sender, EventArgs e)
+        private void hotkeyResister1_onHotKeyDisResister(object sender, EventArgs e)
         {
-            Ctrl.Checked = true;
+            mainform.setStatusText("ホットキーの登録を解除しました");
         }
 
-        private void maskedTextBox1_TextChanged(object sender, EventArgs e)
+        private void hotkeyResister1_onHotKeyResister(object sender, EventArgs e)
         {
-            if (maskedTextBox1.Text.Length > 0)
-            {
-                enableHotkey.Enabled = true;
-                hotKeyCode = (Keys)Enum.Parse(typeof(Keys), maskedTextBox1.Text[0].ToString(), ignoreCase: true);
-            }
-            else
-            {
-                enableHotkey.Enabled = false;
-            }
+            mainform.setStatusText("ホットキーを登録しました");
+        }
+
+        private void hotkeyResister1_HotKeyPush(object sender, EventArgs e)
+        {
+            if (mainform.isConnectedServer) runTest();
         }
 
         public override void onClosedTab()
         {
-            if (hotkey != null) hotkey.Dispose();
+            if (hotkeyResister1.hotkey != null) hotkeyResister1.hotkey.Dispose();
         }
+
+
     }
 }
