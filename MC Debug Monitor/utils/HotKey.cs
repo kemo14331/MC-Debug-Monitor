@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
-using System.Runtime.InteropServices.ComTypes;
-using System.Security.Cryptography.Pkcs;
 
 namespace MC_Debug_Monitor.utils
 {
@@ -72,7 +68,7 @@ namespace MC_Debug_Monitor.utils
                         id = i;
                         OK = true;
                         break;
-                    } 
+                    }
                 }
             }
 

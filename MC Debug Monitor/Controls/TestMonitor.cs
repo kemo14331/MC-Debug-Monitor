@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Drawing.Drawing2D;
+﻿using MC_Debug_Monitor.utils;
+using System;
 using System.Data;
-using System.Text;
-using System.Windows.Forms;
-using System.Drawing.Configuration;
-using System.Numerics;
-using static MC_Debug_Monitor.Program;
-using MC_Debug_Monitor.utils;
+using System.Drawing;
 using System.IO;
+using System.Windows.Forms;
+using static MC_Debug_Monitor.Program;
 
 namespace MC_Debug_Monitor.Controls
 {
@@ -89,7 +83,7 @@ namespace MC_Debug_Monitor.Controls
             dgvPropertyInfo.SetValue(testView, true, null);
         }
 
-        private void addTestButton_Click(object sender,  EventArgs e)
+        private void addTestButton_Click(object sender, EventArgs e)
         {
             if (commandBox.Text.Length > 2)
             {
@@ -130,7 +124,7 @@ namespace MC_Debug_Monitor.Controls
 
         private void mergeTestButton_Click(object sender, EventArgs e)
         {
-            if(commandBox.Text.Length < 2)
+            if (commandBox.Text.Length < 2)
             {
                 MessageBox.Show("コマンドを入力してください", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -145,11 +139,12 @@ namespace MC_Debug_Monitor.Controls
 
         private void testView_SelectionChanged(object sender, EventArgs e)
         {
-            if(testView.SelectedRows.Count > 0)
+            if (testView.SelectedRows.Count > 0)
             {
                 mergeTestButton.Enabled = true;
                 deleteTestButton.Enabled = true;
-            } else
+            }
+            else
             {
                 mergeTestButton.Enabled = false;
                 deleteTestButton.Enabled = false;
@@ -158,7 +153,7 @@ namespace MC_Debug_Monitor.Controls
 
         private void title_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
                 commandBox.Focus();
             }
@@ -209,7 +204,8 @@ namespace MC_Debug_Monitor.Controls
 
         private async void runTest()
         {
-            try {
+            try
+            {
                 sw.Reset();
                 sw.Start();
                 int index = 0;
@@ -222,7 +218,8 @@ namespace MC_Debug_Monitor.Controls
                     index++;
                 }
                 sw.Stop();
-                Invoke((Action)(() => {
+                Invoke((Action)(() =>
+                {
                     mainform.setStatusText(String.Format("{0}個のテストを実行しました({1}ms)", tests.Rows.Count, sw.ElapsedMilliseconds));
                 }));
             }
@@ -234,7 +231,7 @@ namespace MC_Debug_Monitor.Controls
 
         private void copyCommand_Click(object sender, EventArgs e)
         {
-            if(testView.SelectedRows.Count > 0)
+            if (testView.SelectedRows.Count > 0)
             {
                 DataRow dr = ((DataRowView)testView.SelectedRows[0].DataBoundItem).Row;
                 int index = tests.Rows.IndexOf(dr);
@@ -265,7 +262,7 @@ namespace MC_Debug_Monitor.Controls
         private void importButton_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = openTestFileDialog;
-            if(ofd.ShowDialog() == DialogResult.OK)
+            if (ofd.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
@@ -294,7 +291,7 @@ namespace MC_Debug_Monitor.Controls
         private void exportButton_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = saveTestFileDialog;
-            if(sfd.ShowDialog() == DialogResult.OK)
+            if (sfd.ShowDialog() == DialogResult.OK)
             {
                 switch (Path.GetExtension(sfd.FileName))
                 {
@@ -322,7 +319,8 @@ namespace MC_Debug_Monitor.Controls
                 hotkey = new HotKey(modkey, hotKeyCode);
                 if (hotkey.OK)
                 {
-                    hotkey.HotKeyPush += new EventHandler((obj, e) => {
+                    hotkey.HotKeyPush += new EventHandler((obj, e) =>
+                    {
                         if (mainform.isConnectedServer) runTest();
                     });
                     Alt.Enabled = false;
@@ -354,7 +352,7 @@ namespace MC_Debug_Monitor.Controls
 
         private void maskedTextBox1_TextChanged(object sender, EventArgs e)
         {
-            if(maskedTextBox1.Text.Length > 0)
+            if (maskedTextBox1.Text.Length > 0)
             {
                 enableHotkey.Enabled = true;
                 hotKeyCode = (Keys)Enum.Parse(typeof(Keys), maskedTextBox1.Text[0].ToString(), ignoreCase: true);

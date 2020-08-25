@@ -1,10 +1,5 @@
 ﻿using MC_Debug_Monitor.Properties;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace MC_Debug_Monitor

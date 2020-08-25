@@ -1,7 +1,7 @@
 ﻿using CoreRCON;
 using MC_Debug_Monitor.Controls;
+using MC_Debug_Monitor.utils;
 using System;
-using System.Diagnostics.Eventing.Reader;
 using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -115,6 +115,16 @@ namespace MC_Debug_Monitor
             onDisconnectServer();
         }
 
+        private void openTwitter(object sender, EventArgs e)
+        {
+            FixedProcess.openUrl("https://twitter.com/newkemo431");
+        }
+
+        private void openGitHub(object sender, EventArgs e)
+        {
+            FixedProcess.openUrl("https://github.com/kemo14331/MC-Debug-Monitor");
+        }
+
         private void menuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
@@ -138,7 +148,7 @@ namespace MC_Debug_Monitor
         public void closeTabClicked(object sender, EventArgs e)
         {
             int index = mainTabControl.SelectedIndex;
-            if(index >= 2)
+            if (index >= 2)
             {
                 mainTabControl.SelectedIndex = index - 1;
                 RemovableControl rmc = (RemovableControl)mainTabControl.TabPages[index].Controls[0];

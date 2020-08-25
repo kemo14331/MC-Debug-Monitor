@@ -80,13 +80,13 @@ namespace MC_Debug_Monitor.Controls
                 stream = ofd.OpenFile();
                 if (stream != null)
                 {
-                    Dictionary<string, string> properties  = FileUtil.getServerProperties(stream);
+                    Dictionary<string, string> properties = FileUtil.getServerProperties(stream);
                     try
                     {
-                        
+
                         if (properties["enable-rcon"].Equals("true"))
                         {
-                            if(properties["server-ip"] != null) rconIP.Text = properties["server-ip"];
+                            if (properties["server-ip"] != null) rconIP.Text = properties["server-ip"];
                             rconPort.Value = int.Parse(properties["rcon.port"]);
                             rconPass.Text = properties["rcon.password"];
                             System.Media.SystemSounds.Asterisk.Play();

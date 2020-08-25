@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MC_Debug_Monitor.utils
+﻿namespace MC_Debug_Monitor.utils
 {
     public static class MCCommand
     {
@@ -15,7 +11,7 @@ namespace MC_Debug_Monitor.utils
         public static string getResultString(string str)
         {
             int index = str.IndexOf(": ");
-            if(index != -1)
+            if (index != -1)
             {
                 return str.Substring(index + 2);
             }

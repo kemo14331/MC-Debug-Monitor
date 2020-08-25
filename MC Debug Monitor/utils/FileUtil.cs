@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Text;
-using Newtonsoft.Json;
 
 namespace MC_Debug_Monitor.utils
 {
@@ -117,7 +116,7 @@ namespace MC_Debug_Monitor.utils
             {
                 string line = sr.ReadLine();
                 int index = line.IndexOf(titleTrigger);
-                if(index != -1)
+                if (index != -1)
                 {
                     title = line.Substring(index + titleTrigger.Length);
                 }
@@ -130,7 +129,7 @@ namespace MC_Debug_Monitor.utils
         public static void saveTestDataToMCF(DataTable dtb, Stream stream)
         {
             StreamWriter sw = new StreamWriter(stream);
-            foreach(DataRow row in dtb.Rows)
+            foreach (DataRow row in dtb.Rows)
             {
                 sw.WriteLine("# @Title:" + row[0]);
                 sw.WriteLine(row[1]);

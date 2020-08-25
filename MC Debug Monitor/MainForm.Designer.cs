@@ -1,4 +1,7 @@
-﻿namespace MC_Debug_Monitor
+﻿using System;
+using System.Diagnostics;
+
+namespace MC_Debug_Monitor
 {
     partial class MainForm
     {
@@ -34,6 +37,7 @@
             this.editTabMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.closeTab = new System.Windows.Forms.ToolStripMenuItem();
             this.helpMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.versionInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.serverStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -42,7 +46,8 @@
             this.serverMonitor = new MC_Debug_Monitor.Controls.serverManager();
             this.scoreboardMonitorPage = new System.Windows.Forms.TabPage();
             this.scoreboardMonitor = new MC_Debug_Monitor.Controls.ScoreboardMonitor();
-            this.versionInfo = new System.Windows.Forms.ToolStripMenuItem();
+            this.jumpGithubStrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.jumpTwitterStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.mainTabControl.SuspendLayout();
@@ -97,10 +102,19 @@
             // helpMenu
             // 
             this.helpMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.jumpGithubStrip,
+            this.jumpTwitterStrip,
             this.versionInfo});
             this.helpMenu.Name = "helpMenu";
             this.helpMenu.Size = new System.Drawing.Size(65, 20);
             this.helpMenu.Text = "ヘルプ(&H)";
+            // 
+            // versionInfo
+            // 
+            this.versionInfo.Name = "versionInfo";
+            this.versionInfo.Size = new System.Drawing.Size(191, 22);
+            this.versionInfo.Text = "バージョン情報";
+            this.versionInfo.Click += new System.EventHandler(this.versionInfoClicked);
             // 
             // statusStrip
             // 
@@ -187,12 +201,19 @@
             this.scoreboardMonitor.Size = new System.Drawing.Size(550, 330);
             this.scoreboardMonitor.TabIndex = 0;
             // 
-            // versionInfo
+            // jumpGithubStrip
             // 
-            this.versionInfo.Name = "versionInfo";
-            this.versionInfo.Size = new System.Drawing.Size(142, 22);
-            this.versionInfo.Text = "バージョン情報";
-            this.versionInfo.Click += new System.EventHandler(this.versionInfoClicked);
+            this.jumpGithubStrip.Name = "jumpGithubStrip";
+            this.jumpGithubStrip.Size = new System.Drawing.Size(191, 22);
+            this.jumpGithubStrip.Text = "バグ報告・要望(Github)";
+            this.jumpGithubStrip.Click += new EventHandler(this.openGitHub);
+            // 
+            // jumpTwitterStrip
+            // 
+            this.jumpTwitterStrip.Name = "jumpTwitterStrip";
+            this.jumpTwitterStrip.Size = new System.Drawing.Size(191, 22);
+            this.jumpTwitterStrip.Text = "Kemo\'s Twitter";
+            this.jumpTwitterStrip.Click += new EventHandler(this.openTwitter);
             // 
             // MainForm
             // 
@@ -237,6 +258,8 @@
         private Controls.ScoreboardMonitor scoreboardMonitor;
         private System.Windows.Forms.ToolStripMenuItem addTestTab;
         private System.Windows.Forms.ToolStripMenuItem versionInfo;
+        private System.Windows.Forms.ToolStripMenuItem jumpGithubStrip;
+        private System.Windows.Forms.ToolStripMenuItem jumpTwitterStrip;
     }
 }
 
