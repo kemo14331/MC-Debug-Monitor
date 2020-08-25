@@ -14,10 +14,10 @@ The project is licensed under the MIT license.
 ## Features
 * The MC Debug Monitor can monitor the following data.  
  ・ List of Scoreboards  
+ ・ The result of multiple commands  
   ###### These are coming soon
   ・ The result value of the `/data` command  
-  ・ The result value of the `/storage` command  
-  ・ The result of multiple commands  
+  ・ The data of storage
 
 * Monitored data can be saved to an external file.
  
