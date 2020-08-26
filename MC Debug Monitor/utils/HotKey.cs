@@ -87,8 +87,11 @@ namespace MC_Debug_Monitor.utils
 
             protected override void Dispose(bool disposing)
             {
-                UnregisterHotKey(this.Handle, id);
-                base.Dispose(disposing);
+                if (this.Handle != null)
+                {
+                    UnregisterHotKey(this.Handle, id);
+                    base.Dispose(disposing);
+                }
             }
         }
     }

@@ -56,9 +56,9 @@ namespace MC_Debug_Monitor.Controls
                 {
                     hotkey.HotKeyPush += new EventHandler((obj, e) =>
                     {
-                        if(HotKeyPush != null) HotKeyPush(obj, e);
+                        if (HotKeyPush != null) HotKeyPush(obj, e);
                     });
-                    if(onHotKeyResister != null) onHotKeyResister(this, EventArgs.Empty);
+                    if (onHotKeyResister != null) onHotKeyResister(this, EventArgs.Empty);
                     Alt.Enabled = false;
                     Shift.Enabled = false;
                     Ctrl.Enabled = false;
@@ -66,12 +66,12 @@ namespace MC_Debug_Monitor.Controls
                 else
                 {
                     enableHotkey.Checked = false;
-                    if(onFaildHotKeyResister != null) onFaildHotKeyResister(this, EventArgs.Empty);
+                    if (onFaildHotKeyResister != null) onFaildHotKeyResister(this, EventArgs.Empty);
                 }
             }
             else
             {
-                if(onHotKeyResister != null) onHotKeyDisResister(this, EventArgs.Empty);
+                if (onHotKeyResister != null) onHotKeyDisResister(this, EventArgs.Empty);
                 Alt.Enabled = true;
                 Shift.Enabled = true;
                 Ctrl.Enabled = true;

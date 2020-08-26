@@ -132,10 +132,18 @@ namespace MC_Debug_Monitor
 
         public void addTestTabClicked(object sender, EventArgs e)
         {
-            string title = "テスト";
+            addTabPage("テスト", new TestMonitor());
+        }
+
+        public void addDataTabClicked(object sender, EventArgs e)
+        {
+            addTabPage("データ", new DataViewer());
+        }
+
+        public void addTabPage(string title, RemovableControl control)
+        {
             TabPage tabpage = new TabPage(title);
             tabpage.Size = new System.Drawing.Size(550, 330);
-            Control control = new TestMonitor();
             control.Anchor = AnchorStyles.Top | AnchorStyles.Bottom
             | AnchorStyles.Left
             | AnchorStyles.Right;
