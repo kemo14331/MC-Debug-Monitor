@@ -114,6 +114,8 @@ namespace MC_Debug_Monitor
         private void MainForm_Load(object sender, EventArgs e)
         {
             onDisconnectServer();
+            addTabPage("スコアボード", new ScoreboardMonitor());
+            mainTabControl.SelectedIndex = 0;
             setStatusText("サーバーへ接続してください");
         }
 

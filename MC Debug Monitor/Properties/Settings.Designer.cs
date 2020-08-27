@@ -70,17 +70,5 @@ namespace MC_Debug_Monitor.Properties {
                 this["scoreboardUpdateInterval"] = value;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.1.0_alpha")]
-        public string version {
-            get {
-                return ((string)(this["version"]));
-            }
-            set {
-                this["version"] = value;
-            }
-        }
     }
 }

@@ -35,6 +35,8 @@ namespace MC_Debug_Monitor
             this.addTabMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.addTestTab = new System.Windows.Forms.ToolStripMenuItem();
             this.addDataTab = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.addRconConsole = new System.Windows.Forms.ToolStripMenuItem();
             this.editTabMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.closeTab = new System.Windows.Forms.ToolStripMenuItem();
             this.helpMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,15 +49,10 @@ namespace MC_Debug_Monitor
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.serverPage = new System.Windows.Forms.TabPage();
             this.serverMonitor = new MC_Debug_Monitor.Controls.serverManager();
-            this.scoreboardMonitorPage = new System.Windows.Forms.TabPage();
-            this.scoreboardMonitor = new MC_Debug_Monitor.Controls.ScoreboardMonitor();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.addRconConsole = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.mainTabControl.SuspendLayout();
             this.serverPage.SuspendLayout();
-            this.scoreboardMonitorPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -98,6 +95,18 @@ namespace MC_Debug_Monitor
             this.addDataTab.Size = new System.Drawing.Size(178, 22);
             this.addDataTab.Text = "データを追加";
             this.addDataTab.Click += new System.EventHandler(this.addDataTabClicked);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(175, 6);
+            // 
+            // addRconConsole
+            // 
+            this.addRconConsole.Name = "addRconConsole";
+            this.addRconConsole.Size = new System.Drawing.Size(178, 22);
+            this.addRconConsole.Text = "Rconコンソールを追加";
+            this.addRconConsole.Click += new System.EventHandler(this.addRconConsoleClicked);
             // 
             // editTabMenu
             // 
@@ -181,7 +190,6 @@ namespace MC_Debug_Monitor
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.mainTabControl.Controls.Add(this.serverPage);
-            this.mainTabControl.Controls.Add(this.scoreboardMonitorPage);
             this.mainTabControl.Location = new System.Drawing.Point(0, 27);
             this.mainTabControl.Name = "mainTabControl";
             this.mainTabControl.SelectedIndex = 0;
@@ -210,40 +218,6 @@ namespace MC_Debug_Monitor
             this.serverMonitor.Size = new System.Drawing.Size(550, 330);
             this.serverMonitor.TabIndex = 0;
             // 
-            // scoreboardMonitorPage
-            // 
-            this.scoreboardMonitorPage.Controls.Add(this.scoreboardMonitor);
-            this.scoreboardMonitorPage.Location = new System.Drawing.Point(4, 24);
-            this.scoreboardMonitorPage.Name = "scoreboardMonitorPage";
-            this.scoreboardMonitorPage.Padding = new System.Windows.Forms.Padding(3);
-            this.scoreboardMonitorPage.Size = new System.Drawing.Size(550, 330);
-            this.scoreboardMonitorPage.TabIndex = 1;
-            this.scoreboardMonitorPage.Text = "スコアボード";
-            this.scoreboardMonitorPage.UseVisualStyleBackColor = true;
-            // 
-            // scoreboardMonitor
-            // 
-            this.scoreboardMonitor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.scoreboardMonitor.BackColor = System.Drawing.Color.Transparent;
-            this.scoreboardMonitor.Location = new System.Drawing.Point(0, 0);
-            this.scoreboardMonitor.Name = "scoreboardMonitor";
-            this.scoreboardMonitor.Size = new System.Drawing.Size(550, 330);
-            this.scoreboardMonitor.TabIndex = 0;
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(175, 6);
-            // 
-            // addRconConsole
-            // 
-            this.addRconConsole.Name = "addRconConsole";
-            this.addRconConsole.Size = new System.Drawing.Size(178, 22);
-            this.addRconConsole.Text = "Rconコンソールを追加";
-            this.addRconConsole.Click += new EventHandler(this.addRconConsoleClicked);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -264,7 +238,6 @@ namespace MC_Debug_Monitor
             this.statusStrip.PerformLayout();
             this.mainTabControl.ResumeLayout(false);
             this.serverPage.ResumeLayout(false);
-            this.scoreboardMonitorPage.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -279,12 +252,10 @@ namespace MC_Debug_Monitor
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel serverStatusLabel;
         private System.Windows.Forms.TabControl mainTabControl;
-        private System.Windows.Forms.TabPage scoreboardMonitorPage;
         private System.Windows.Forms.ToolStripStatusLabel statusLabel;
         private System.Windows.Forms.ToolStripMenuItem closeTab;
         private System.Windows.Forms.TabPage serverPage;
         private Controls.serverManager serverMonitor;
-        private Controls.ScoreboardMonitor scoreboardMonitor;
         private System.Windows.Forms.ToolStripMenuItem addTestTab;
         private System.Windows.Forms.ToolStripMenuItem versionInfo;
         private System.Windows.Forms.ToolStripMenuItem jumpGithubStrip;

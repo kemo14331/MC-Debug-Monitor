@@ -13,7 +13,7 @@ namespace MC_Debug_Monitor
 
         private void VersionInfoForm_Load(object sender, EventArgs e)
         {
-            versionLabel.Text = String.Format("Ver.{0}", Settings.Default.version);
+            versionLabel.Text = String.Format("Ver.{0}", Program.version);
         }
     }
 }
