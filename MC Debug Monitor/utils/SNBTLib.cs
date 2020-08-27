@@ -65,7 +65,6 @@ namespace MC_Debug_Monitor.utils
 
         public static void FormatInRichTextBox(string input, RichTextBox rtb)
         {
-            StringBuilder stb = new StringBuilder();
             int indent = 3;
             int depth = 0;
             int v = 1; //0: key, 1: value
