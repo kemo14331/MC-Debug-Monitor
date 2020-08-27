@@ -1,4 +1,5 @@
-# MC Debug Monitor ![GitHub release (latest by date)](https://img.shields.io/github/v/release/kemo14331/MC-Debug-Monitor)![Licence](https://img.shields.io/github/license/kemo14331/MC-Debug-Monitor) 
+# MC Debug Monitor  
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/kemo14331/MC-Debug-Monitor)  ![Licence](https://img.shields.io/github/license/kemo14331/MC-Debug-Monitor) 
 
 MC Debug Monitor is that monitors the information obtained by commands in Minecraft.  
 The project is licensed under the MIT license.
