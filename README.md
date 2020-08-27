@@ -9,6 +9,7 @@ The project is licensed under the MIT license.
  <summary>and more</summary>  
    
  <img src="https://imgur.com/ohXJDIy.jpg" alt="screenshot2" />
+ <img src="https://imgur.com/tK3qAD1.jpg" alt="screenshot3" />
  </details>
  
 ## Features
