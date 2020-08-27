@@ -15,15 +15,16 @@ The project is licensed under the MIT license.
 * The MC Debug Monitor can monitor the following data.  
  ・ List of Scoreboards  
  ・ The result of multiple commands  
-  ###### These are coming soon
-  ・ The result value of the `/data` command  
-  ・ The data of storage
-
+ ・ The result value of the `/data` command  
 * Monitored data can be saved to an external file.
  
 ## Requirement
  
  * .NETCore 3.1
+ 
+## Library
+ * [CoreRCON](https://github.com/ScottKaye/CoreRCON)
+ * [Newtonsoft.Json](https://www.newtonsoft.com/json)
  
 ## Author
 
