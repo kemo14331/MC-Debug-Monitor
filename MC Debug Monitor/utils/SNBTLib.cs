@@ -1,7 +1,4 @@
 ﻿using Microsoft.VisualBasic;
-using System;
-using System.CodeDom;
-using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -17,7 +14,7 @@ namespace MC_Debug_Monitor.utils
             { "Normal", Color.White },
             { "Key",  Color.LightSkyBlue},
             { "Number", Color.LightGreen },
-            { "Int", Color.LightBlue },
+            { "Int", Color.Red },
             { "Byte", Color.IndianRed},
             { "Double", Color.PaleVioletRed },
             { "Short", Color.Yellow},
@@ -30,7 +27,7 @@ namespace MC_Debug_Monitor.utils
             StringBuilder stb = new StringBuilder();
             int escape = 0;
             bool inString = false;
-            foreach(char c in input)
+            foreach (char c in input)
             {
                 if (inString)
                 {
@@ -42,7 +39,7 @@ namespace MC_Debug_Monitor.utils
                     }
                     if (c.Equals('"') || c.Equals("'"))
                     {
-                        if(escape == 0)
+                        if (escape == 0)
                         {
                             inString = false;
                             continue;
@@ -114,7 +111,7 @@ namespace MC_Debug_Monitor.utils
                         rtb.AppendText(c, highlightColor["String"]);
                         if (c.Equals('"') || c.Equals('\''))
                         {
-                            if(escape == 0)
+                            if (escape == 0)
                             {
                                 inString = false;
                                 goto Skip;
@@ -186,7 +183,8 @@ namespace MC_Debug_Monitor.utils
                                 depth--;
                                 rtb.AppendText(']', highlightColor["Normal"]);
                                 index++;
-                            }else if (input[index + 1].Equals('{')) //[{
+                            }
+                            else if (input[index + 1].Equals('{')) //[{
                             {
                                 rtb.AppendText("\n" + Strings.Space(indent * depth));
                             }
@@ -205,7 +203,7 @@ namespace MC_Debug_Monitor.utils
                             if (nc.Equals('{') || nc.Equals('['))
                             {
                                 // ..,{}.. or ...,[]...
-                                if(n2c.Equals('}') || n2c.Equals(']'))
+                                if (n2c.Equals('}') || n2c.Equals(']'))
                                 {
                                     break;
                                 }
@@ -215,7 +213,8 @@ namespace MC_Debug_Monitor.utils
                             {
                                 v = 0;
                                 rtb.AppendText("\n" + Strings.Space(indent * depth));
-                            } else
+                            }
+                            else
                             {
 
                             }

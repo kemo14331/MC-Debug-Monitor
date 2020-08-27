@@ -7,6 +7,8 @@ namespace MC_Debug_Monitor.Controls
     public partial class RemovableControl : UserControl
     {
 
+        public short tabIndex = 0;
+
         public RemovableControl()
         {
             InitializeComponent();

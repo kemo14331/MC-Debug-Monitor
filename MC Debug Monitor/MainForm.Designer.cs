@@ -58,6 +58,7 @@ namespace MC_Debug_Monitor
             // 
             // menuStrip
             // 
+            this.menuStrip.BackColor = System.Drawing.SystemColors.ControlLight;
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addTabMenu,
             this.editTabMenu,
@@ -75,6 +76,7 @@ namespace MC_Debug_Monitor
             this.addTabMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addTestTab,
             this.addDataTab});
+            this.addTabMenu.ForeColor = System.Drawing.Color.Black;
             this.addTabMenu.Name = "addTabMenu";
             this.addTabMenu.Size = new System.Drawing.Size(85, 20);
             this.addTabMenu.Text = "タブの追加(&F)";
@@ -97,6 +99,7 @@ namespace MC_Debug_Monitor
             // 
             this.editTabMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.closeTab});
+            this.editTabMenu.ForeColor = System.Drawing.Color.Black;
             this.editTabMenu.Name = "editTabMenu";
             this.editTabMenu.Size = new System.Drawing.Size(85, 20);
             this.editTabMenu.Text = "タブの編集(&E)";
@@ -114,6 +117,7 @@ namespace MC_Debug_Monitor
             this.jumpGithubStrip,
             this.jumpTwitterStrip,
             this.versionInfo});
+            this.helpMenu.ForeColor = System.Drawing.Color.Black;
             this.helpMenu.Name = "helpMenu";
             this.helpMenu.Size = new System.Drawing.Size(65, 20);
             this.helpMenu.Text = "ヘルプ(&H)";

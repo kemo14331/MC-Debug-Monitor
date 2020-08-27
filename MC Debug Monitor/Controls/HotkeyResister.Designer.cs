@@ -43,12 +43,14 @@
             this.hotkeySettingGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.hotkeySettingGroup.BackColor = System.Drawing.Color.Transparent;
             this.hotkeySettingGroup.Controls.Add(this.label4);
             this.hotkeySettingGroup.Controls.Add(this.maskedTextBox1);
             this.hotkeySettingGroup.Controls.Add(this.enableHotkey);
             this.hotkeySettingGroup.Controls.Add(this.Alt);
             this.hotkeySettingGroup.Controls.Add(this.Shift);
             this.hotkeySettingGroup.Controls.Add(this.Ctrl);
+            this.hotkeySettingGroup.ForeColor = System.Drawing.SystemColors.ControlText;
             this.hotkeySettingGroup.Location = new System.Drawing.Point(0, 0);
             this.hotkeySettingGroup.Name = "hotkeySettingGroup";
             this.hotkeySettingGroup.Size = new System.Drawing.Size(239, 76);
@@ -121,6 +123,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.hotkeySettingGroup);
             this.Name = "HotkeyResister";
             this.Size = new System.Drawing.Size(239, 76);

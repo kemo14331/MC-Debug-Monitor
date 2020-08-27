@@ -1,5 +1,6 @@
 ﻿using MC_Debug_Monitor.utils;
 using System;
+using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static MC_Debug_Monitor.Program;
@@ -8,6 +9,9 @@ namespace MC_Debug_Monitor.Controls
 {
     public partial class DataViewer : RemovableControl
     {
+
+        private string rawResult;
+
         public DataViewer()
         {
             InitializeComponent();
@@ -16,6 +20,29 @@ namespace MC_Debug_Monitor.Controls
         private void dataViewer_Load(object sender, EventArgs e)
         {
             runButton.Enabled = mainform.isConnectedServer;
+            fontSetup();
+
+        }
+
+        private void fontSetup()
+        {
+            try
+            {
+                System.Drawing.Text.PrivateFontCollection pfc =
+                    new System.Drawing.Text.PrivateFontCollection();
+                pfc.AddFontFile(@".\fonts\Myrica.ttc");
+                foreach (FontFamily ff in pfc.Families)
+                {
+                    Console.WriteLine(ff.Name);
+                }
+                Font f = new Font(pfc.Families[0], 12);
+                resultBox.Font = f;
+            }
+            catch
+            {
+                mainform.setStatusText("フォントの読み込みに失敗しました");
+                System.Media.SystemSounds.Beep.Play();
+            }
         }
 
         public override void onConnectServer()
@@ -48,7 +75,11 @@ namespace MC_Debug_Monitor.Controls
 
         private void hotkeyResister1_HotKeyPush(object sender, EventArgs e)
         {
-            if (mainform.isConnectedServer) runCommand();
+            if (mainform.isConnectedServer)
+            {
+                runCommand(); mainform.moveTab(TabIndex);
+            }
+
         }
 
         public override void onClosedTab()
@@ -58,8 +89,11 @@ namespace MC_Debug_Monitor.Controls
 
         private void copyButton_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(resultBox.Text);
-            mainform.setStatusText("コピーしました");
+            if (resultBox.Text.Length > 0)
+            {
+                Clipboard.SetText(resultBox.Text);
+                mainform.setStatusText("コピーしました");
+            }
         }
 
         async private void runCommand()
@@ -70,6 +104,7 @@ namespace MC_Debug_Monitor.Controls
                 {
                     string result = await mainform.sendCommand(commandBox.Text);
                     result = MCCommand.getResultString(result);
+                    rawResult = (string)result.Clone();
                     Invoke((Action)(() =>
                     {
                         SNBTLib.FormatInRichTextBox(result, resultBox);
@@ -81,6 +116,37 @@ namespace MC_Debug_Monitor.Controls
         private void runButton_Click(object sender, EventArgs e)
         {
             runCommand();
+        }
+
+        private void fontbutton_Click(object sender, EventArgs e)
+        {
+            FontDialog fd = new FontDialog();
+
+            //fd.Font = resultBox.Font;
+            fd.Color = resultBox.ForeColor;
+            fd.MaxSize = 25;
+            fd.MinSize = 5;
+            fd.FontMustExist = true;
+            fd.AllowVerticalFonts = true;
+
+            if (fd.ShowDialog() != DialogResult.Cancel)
+            {
+                resultBox.Font = fd.Font;
+                if (resultBox.Text.Length > 0)
+                {
+                    SNBTLib.FormatInRichTextBox(rawResult, resultBox);
+                }
+            }
+        }
+
+        private void commandBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter && runButton.Enabled)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                runCommand();
+            }
         }
     }
 }

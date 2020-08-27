@@ -83,6 +83,8 @@
             // 
             // hotkeyResister1
             // 
+            this.hotkeyResister1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.hotkeyResister1.BackColor = System.Drawing.Color.Transparent;
             this.hotkeyResister1.Location = new System.Drawing.Point(291, 161);
             this.hotkeyResister1.Name = "hotkeyResister1";
             this.hotkeyResister1.Size = new System.Drawing.Size(253, 76);
@@ -104,6 +106,7 @@
             this.testView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.testView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.testView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.testView.GridColor = System.Drawing.SystemColors.ControlDarkDark;
             this.testView.Location = new System.Drawing.Point(6, 22);
             this.testView.Name = "testView";
             this.testView.ReadOnly = true;
@@ -320,7 +323,7 @@
             // 
             // openTestFileDialog
             // 
-            this.openTestFileDialog.Filter = "mcfunctionファイル|*.mcfunction|テストJSONファイル|*.json";
+            this.openTestFileDialog.Filter = "読み込み可能なファイル|*.mcfunction;*.json";
             this.openTestFileDialog.Title = "テストデータのインポート";
             // 
             // saveTestFileDialog
@@ -333,6 +336,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.testMonitorGroup);
             this.Name = "TestMonitor";
             this.Size = new System.Drawing.Size(550, 330);

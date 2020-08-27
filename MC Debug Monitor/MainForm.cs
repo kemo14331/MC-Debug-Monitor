@@ -2,6 +2,7 @@
 using MC_Debug_Monitor.Controls;
 using MC_Debug_Monitor.utils;
 using System;
+using System.Drawing;
 using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -144,13 +145,21 @@ namespace MC_Debug_Monitor
         {
             TabPage tabpage = new TabPage(title);
             tabpage.Size = new System.Drawing.Size(550, 330);
+            tabpage.BackColor = Color.Snow;
             control.Anchor = AnchorStyles.Top | AnchorStyles.Bottom
             | AnchorStyles.Left
             | AnchorStyles.Right;
             control.Size = new System.Drawing.Size(550, 330);
+            control.BackColor = Color.Transparent;
+            control.TabIndex = mainTabControl.TabPages.Count;
             tabpage.Controls.Add(control);
             mainTabControl.TabPages.Add(tabpage);
             mainTabControl.SelectedIndex = (mainTabControl.TabCount - 1);
+        }
+
+        public void moveTab(int index)
+        {
+            mainTabControl.SelectedIndex = index;
         }
 
         public void closeTabClicked(object sender, EventArgs e)
@@ -162,6 +171,12 @@ namespace MC_Debug_Monitor
                 RemovableControl rmc = (RemovableControl)mainTabControl.TabPages[index].Controls[0];
                 rmc.onClosedTab();
                 mainTabControl.TabPages.RemoveAt(index);
+                int i = 0;
+                foreach (TabPage tp in mainTabControl.TabPages)
+                {
+                    tp.Controls[0].TabIndex = i;
+                    i++;
+                }
             }
             else
             {

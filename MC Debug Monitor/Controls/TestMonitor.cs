@@ -149,6 +149,8 @@ namespace MC_Debug_Monitor.Controls
         {
             if (e.KeyCode == Keys.Enter)
             {
+                e.SuppressKeyPress = true;
+                e.Handled = true;
                 commandBox.Focus();
             }
         }
@@ -170,6 +172,8 @@ namespace MC_Debug_Monitor.Controls
                 }
                 commandBox.Text = "";
                 title.Text = "";
+                e.SuppressKeyPress = true;
+                e.Handled = true;
             }
         }
 
@@ -321,7 +325,11 @@ namespace MC_Debug_Monitor.Controls
 
         private void hotkeyResister1_HotKeyPush(object sender, EventArgs e)
         {
-            if (mainform.isConnectedServer) runTest();
+            if (mainform.isConnectedServer)
+            {
+                runTest();
+                mainform.moveTab(TabIndex);
+            }
         }
 
         public override void onClosedTab()
