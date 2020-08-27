@@ -1,25 +1,30 @@
-# MCDebugMonitor ![Licence](https://img.shields.io/github/license/kemo14331/MC-Debug-Monitor)
+# MC Debug Monitor ![Licence](https://img.shields.io/github/license/kemo14331/MC-Debug-Monitor)
 
-MCDebugMonitor is that monitors the information obtained by commands in Minecraft.  
+MC Debug Monitor is that monitors the information obtained by commands in Minecraft.  
 The project is licensed under the MIT license.
  
 ## ScreenShot
  ![screenshot](https://imgur.com/qfobB5V.jpg,"screenshot")
-
+ <details>
+ <summary>and more</summary>  
+   
+ <img src="https://imgur.com/ohXJDIy.jpg" alt="screenshot2" />
+ </details>
  
 ## Features
-* The MCDebugMonitor can monitor the following data.  
+* The MC Debug Monitor can monitor the following data.  
  ・ List of Scoreboards  
-  ###### These are coming soon
-  ・ The result value of the `/data` command  
-  ・ The result value of the `/storage` command  
-  ・ The result of multiple commands  
-
+ ・ The result of multiple commands  
+ ・ The result value of the `/data` command  
 * Monitored data can be saved to an external file.
  
 ## Requirement
  
  * .NETCore 3.1
+ 
+## Library
+ * [CoreRCON](https://github.com/ScottKaye/CoreRCON)
+ * [Newtonsoft.Json](https://www.newtonsoft.com/json)
  
 ## Author
 
