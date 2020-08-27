@@ -114,6 +114,7 @@ namespace MC_Debug_Monitor
         private void MainForm_Load(object sender, EventArgs e)
         {
             onDisconnectServer();
+            setStatusText("サーバーへ接続してください");
         }
 
         private void openTwitter(object sender, EventArgs e)
@@ -139,6 +140,11 @@ namespace MC_Debug_Monitor
         public void addDataTabClicked(object sender, EventArgs e)
         {
             addTabPage("データ", new DataViewer());
+        }
+
+        public void addRconConsoleClicked(object sender, EventArgs e)
+        {
+            addTabPage("コンソール", new RconConsole());
         }
 
         public void addTabPage(string title, RemovableControl control)

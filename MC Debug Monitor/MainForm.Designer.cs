@@ -49,6 +49,8 @@ namespace MC_Debug_Monitor
             this.serverMonitor = new MC_Debug_Monitor.Controls.serverManager();
             this.scoreboardMonitorPage = new System.Windows.Forms.TabPage();
             this.scoreboardMonitor = new MC_Debug_Monitor.Controls.ScoreboardMonitor();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.addRconConsole = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.mainTabControl.SuspendLayout();
@@ -75,7 +77,9 @@ namespace MC_Debug_Monitor
             // 
             this.addTabMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addTestTab,
-            this.addDataTab});
+            this.addDataTab,
+            this.toolStripSeparator1,
+            this.addRconConsole});
             this.addTabMenu.ForeColor = System.Drawing.Color.Black;
             this.addTabMenu.Name = "addTabMenu";
             this.addTabMenu.Size = new System.Drawing.Size(85, 20);
@@ -84,14 +88,14 @@ namespace MC_Debug_Monitor
             // addTestTab
             // 
             this.addTestTab.Name = "addTestTab";
-            this.addTestTab.Size = new System.Drawing.Size(133, 22);
+            this.addTestTab.Size = new System.Drawing.Size(178, 22);
             this.addTestTab.Text = "テストを追加";
             this.addTestTab.Click += new System.EventHandler(this.addTestTabClicked);
             // 
             // addDataTab
             // 
             this.addDataTab.Name = "addDataTab";
-            this.addDataTab.Size = new System.Drawing.Size(133, 22);
+            this.addDataTab.Size = new System.Drawing.Size(178, 22);
             this.addDataTab.Text = "データを追加";
             this.addDataTab.Click += new System.EventHandler(this.addDataTabClicked);
             // 
@@ -228,6 +232,18 @@ namespace MC_Debug_Monitor
             this.scoreboardMonitor.Size = new System.Drawing.Size(550, 330);
             this.scoreboardMonitor.TabIndex = 0;
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(175, 6);
+            // 
+            // addRconConsole
+            // 
+            this.addRconConsole.Name = "addRconConsole";
+            this.addRconConsole.Size = new System.Drawing.Size(178, 22);
+            this.addRconConsole.Text = "Rconコンソールを追加";
+            this.addRconConsole.Click += new EventHandler(this.addRconConsoleClicked);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -274,6 +290,8 @@ namespace MC_Debug_Monitor
         private System.Windows.Forms.ToolStripMenuItem jumpGithubStrip;
         private System.Windows.Forms.ToolStripMenuItem jumpTwitterStrip;
         private System.Windows.Forms.ToolStripMenuItem addDataTab;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem addRconConsole;
     }
 }
 
