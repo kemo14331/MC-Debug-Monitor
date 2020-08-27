@@ -20,7 +20,7 @@ The project is licensed under the MIT license.
 * Monitored data can be saved to an external file.
 
 ## Downloads
- [MC-Debug-Monitor/Release](https://github.com/kemo14331/MC-Debug-Monitor/releases)
+ [MC-Debug-Monitor/Release](https://github.com/kemo14331/MC-Debug-Monitor/releases/latest)
  
 ## Requirement
  
