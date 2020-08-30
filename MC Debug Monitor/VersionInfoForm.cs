@@ -1,4 +1,4 @@
-﻿using MC_Debug_Monitor.Properties;
+﻿using Microsoft.VisualBasic;
 using System;
 using System.Windows.Forms;
 
@@ -13,7 +13,7 @@ namespace MC_Debug_Monitor
 
         private void VersionInfoForm_Load(object sender, EventArgs e)
         {
-            versionLabel.Text = String.Format("Ver.{0}", Program.version);
+            versionLabel.Text = String.Format("Ver.{0}", GetType().Assembly.GetName().Version.ToString());
         }
     }
 }

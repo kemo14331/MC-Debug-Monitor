@@ -8,6 +8,14 @@
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>KeyFile.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
+    <Authors>Kemo431</Authors>
+    <Product />
+    <Company />
+    <Version>0.2.0</Version>
+    <Copyright>Kemo431</Copyright>
+    <NeutralLanguage></NeutralLanguage>
+    <RepositoryUrl>https://github.com/kemo14331/MC-Debug-Monitor</RepositoryUrl>
+    <AssemblyVersion>0.2.0.0</AssemblyVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

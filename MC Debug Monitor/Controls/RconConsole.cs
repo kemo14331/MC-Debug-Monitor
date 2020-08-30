@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using MC_Debug_Monitor.utils;
+using System;
 using System.Drawing;
-using System.Data;
-using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using static MC_Debug_Monitor.Program;
-using System.Threading.Tasks;
-using MC_Debug_Monitor.utils;
 
 namespace MC_Debug_Monitor.Controls
 {
@@ -58,14 +54,16 @@ namespace MC_Debug_Monitor.Controls
         async private void sendCommand()
         {
             string cmd = (string)commandBox.Text.Clone();
-            Invoke((Action)(() => {
+            Invoke((Action)(() =>
+            {
                 ConsoleView.AppendText(commandBox.Text + "\n");
                 commandBox.Text = "";
             }));
             await Task.Run((Action)(async () =>
             {
                 string result = await mainform.sendCommand(cmd);
-                Invoke((Action)(() => {
+                Invoke((Action)(() =>
+                {
                     if (result.Contains("[HERE]"))
                     {
                         ConsoleView.AppendText(" " + result + "\n", Color.Red);
@@ -85,7 +83,7 @@ namespace MC_Debug_Monitor.Controls
 
         private void commandBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter && sendButton.Enabled && commandBox.Text.Length > 0)
+            if (e.KeyCode == Keys.Enter && sendButton.Enabled && commandBox.Text.Length > 0)
             {
                 e.Handled = true;
                 e.SuppressKeyPress = true;
@@ -95,7 +93,7 @@ namespace MC_Debug_Monitor.Controls
 
         private void sendButton_Click(object sender, EventArgs e)
         {
-            if(commandBox.Text.Length > 0)
+            if (commandBox.Text.Length > 0)
             {
                 sendCommand();
             }

@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "MC Debug Monitor": {
+      "commandName": "Project"
+    }
+  }
+}
